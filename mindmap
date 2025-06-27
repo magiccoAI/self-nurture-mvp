@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自我养育 - 概念图谱</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* 柔和的背景色 */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* 调整为顶部对齐，以便内容从顶部开始 */
+            min-height: 100vh;
+            padding: 20px; /* 增加整体内边距 */
+            margin: 0;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 12px; /* 圆角 */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 柔和阴影 */
+            padding: 30px;
+            max-width: 90%; /* 适应屏幕宽度 */
+            width: 1000px; /* 适当的最大宽度 */
+            box-sizing: border-box;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #555;
+            text-align: center;
+        }
+
+        .knowledge-base-container {
+            display: flex;
+            flex-direction: column; /* 垂直布局 */
+            align-items: center; /* 居中内容 */
+        }
+
+        .main-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column; /* 垂直布局 */
+            align-items: center;
+        }
+
+        .concept-map-section {
+            width: 100%;
+            background-color: #fdfdff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        #concept-graph-container {
+            position: relative;
+            margin: 20px auto; /* 居中显示 */
+            width: 100%; /* 宽度自适应容器 */
+            max-width: 800px; /* 最大宽度 */
+        }
+
+        #concept-graph {
+            border: 1px solid #e0e0e0;
+            background-color: #f9f9fa;
+            border-radius: 8px;
+            display: block; /* 移除额外空间 */
+            width: 100%; /* 响应式宽度 */
+            height: 500px; /* 固定高度，或者根据需要调整 */
+        }
+
+        .tooltip {
+            position: absolute;
+            text-align: center; /* 工具提示内容居中 */
+            padding: 10px;
+            font-size: 14px;
+            background: rgba(44, 62, 80, 0.9); /* 深色背景，半透明 */
+            color: #ffffff;
+            border-radius: 6px;
+            pointer-events: none;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .ai-disclaimer {
+            margin-top: 25px;
+            font-size: 0.85em;
+            color: #888;
+            background-color: #f2f7fb;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #a8dadc; /* 浅蓝色边框 */
+            text-align: left; /* 声明文本左对齐 */
+        }
+
+        .ai-disclaimer strong {
+            color: #34495e;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap; /* 允许换行 */
+        }
+
+        select#theory-filter {
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: 1px solid #dcdcdc;
+            background-color: #fff;
+            font-size: 1em;
+            color: #444;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        select#theory-filter:focus {
+            border-color: #3498db; /* 聚焦时的蓝色边框 */
+        }
+
+        label {
+            font-size: 1em;
+            color: #555;
+            font-weight: 500;
+        }
+
+        /* D3 元素样式 */
+        .link {
+            stroke: #cccccc; /* 链接颜色 */
+            stroke-opacity: 0.6;
+        }
+
+        .node-circle {
+            /* 节点圆圈颜色由 D3 的 color scale 动态生成 */
+            stroke: #ffffff;
+            stroke-width: 1.5px;
+            cursor: pointer;
+            transition: r 0.1s ease-out; /* 半径变化动画 */
+        }
+
+        .node-circle:hover {
+            r: 12px; /* 鼠标悬停时节点放大 */
+        }
+
+        .node-label {
+            font-size: 10px;
+            fill: #333; /* 文本颜色 */
+            pointer-events: none; /* 确保点击事件穿透到圆圈 */
+            text-anchor: start; /* 文本左对齐 */
+        }
+
+        .theory-intro-section {
+            background-color: #e8f5e9; /* 柔和的绿色背景 */
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .theory-intro-section h3 {
+            color: #2e7d32; /* 深绿色标题 */
+            margin-bottom: 15px;
+        }
+
+        .theory-intro-section p {
+            color: #4CAF50; /* 绿色文本 */
+            margin-bottom: 20px;
+        }
+
+        .theory-intro-section button {
+            background-color: #4CAF50; /* 绿色按钮 */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+        }
+
+        .theory-intro-section button:hover {
+            background-color: #388E3C; /* 按钮深色 */
+            transform: translateY(-2px);
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            #concept-graph {
+                height: 400px; /* 移动端适当减小高度 */
+            }
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            select#theory-filter {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1, h2 {
+                font-size: 1.8em;
+            }
+            p {
+                font-size: 0.9em;
+            }
+            #concept-graph {
+                height: 300px; /* 更小的屏幕更小的高度 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="knowledge-base-container">
+            <h1>知识库</h1>
+            <p>探索心理学与精神分析的核心概念，建立个人成长的理论基础</p>
+
+            <div class="main-content">
+                <div class="concept-map-section">
+                    <h2>概念图谱</h2>
+                    <p>探索精神心理学与精神分析的核心概念及其关联</p>
+                    <div id="concept-graph-container">
+                        <div class="controls">
+                            <label for="theory-filter">筛选理论:</label>
+                            <select id="theory-filter">
+                                <option value="all">所有概念</option>
+                                <option value="精神分析">精神分析</option>
+                                <option value="依恋理论">依恋理论</option>
+                                <option value="发展心理学">发展心理学</option>
+                                <option value="创伤理论">创伤理论</option>
+                                <option value="内在小孩">内在小孩</option>
+                            </select>
+                        </div>
+                        <svg id="concept-graph" width="100%" height="500"></svg>
+                        <div id="tooltip" class="tooltip" style="opacity:0;"></div>
+                        <div class="ai-disclaimer">
+                            <p><strong>重要提示：</strong>本概念图谱中的所有概念解释及关系推导均由AI模型生成，仅供参考。请结合个人情况理性判断，并在需要时咨询专业人士。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="theory-intro-section">
+                    <h3>为什么要理论基础？</h3>
+                    <p>系统化的理论知识能帮助我们理解内心世界的复杂性，为自我探索提供框架和语言。</p>
+                    <button>前往自我探索</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 你的概念数据
+        const graphData = {
+            "nodes": [
+                {"id": "精神分析", "group": "理论", "description": "探索无意识对行为和人格的影响，如弗洛伊德理论。"},
+                {"id": "自我结构", "group": "精神分析", "description": "人格的组成部分：本我、自我、超我。"},
+                {"id": "本我", "group": "精神分析", "parent": "自我结构", "description": "原始冲动与欲望的本能部分。"},
+                {"id": "自我", "group": "精神分析", "parent": "自我结构", "description": "现实原则与执行功能，处理本我与超我之间的冲突。"},
+                {"id": "超我", "group": "精神分析", "parent": "自我结构", "description": "道德与理想，代表社会规范和良心。"},
+                {"id": "防御机制", "group": "精神分析", "description": "应对冲突和焦虑的无意识心理策略，如压抑、投射。"},
+
+                {"id": "依恋理论", "group": "理论", "description": "鲍尔比和安斯沃斯理论，解释早期亲密关系模式如何影响成年依恋风格。"},
+                {"id": "安全型依恋", "group": "依恋理论", "parent": "依恋理论", "description": "信任、舒适的亲密关系，源于可靠的照护。"},
+                {"id": "焦虑型依恋", "group": "依恋理论", "parent": "依恋理论", "description": "对被抛弃的担忧，寻求过度亲密，源于不稳定的照护。"},
+                {"id": "回避型依恋", "group": "依恋理论", "parent": "依恋理论", "description": "对亲密感到不适，倾向独立，源于疏离的照护。"},
+                {"id": "混乱型依恋", "group": "依恋理论", "parent": "依恋理论", "description": "行为矛盾，既渴望又害怕亲密，通常与创伤性照护相关。"},
+
+                {"id": "发展心理学", "group": "理论", "description": "研究人从出生到死亡的心理发展过程，如埃里克森的发展阶段。"},
+                {"id": "成长阶段", "group": "发展心理学", "parent": "发展心理学", "description": "埃里克森理论中的人生八个发展阶段，每个阶段有特定任务。"},
+                {"id": "发展危机", "group": "发展心理学", "parent": "发展心理学", "description": "每个成长阶段面临的心理社会挑战，处理好则促进成长。"},
+
+                {"id": "创伤理论", "group": "理论", "description": "探讨心理创伤的形成、影响及治愈过程。"},
+                {"id": "创伤反应", "group": "创伤理论", "parent": "创伤理论", "description": "个体经历创伤后可能出现的生理和心理应激反应。"},
+                {"id": "PTSD", "group": "创伤理论", "parent": "创伤理论", "description": "创伤后应激障碍，是创伤反应的严重形式。"},
+                {"id": "复杂性创伤", "group": "创伤理论", "parent": "创伤理论", "description": "长期、反复或持续的创伤经历导致的身心影响。"},
+
+                {"id": "内在小孩", "group": "概念", "description": "人格中保留的童年自我部分，受童年经历影响。"},
+                {"id": "受伤的内在小孩", "group": "内在小孩", "parent": "内在小孩", "description": "童年创伤、需求未被满足等留下的心理创伤和情绪模式。"},
+                {"id": "自然的内在小孩", "group": "内在小孩", "parent": "内在小孩", "description": "纯真、创造力、自由、好奇、快乐的原始自我。"},
+
+                {"id": "共情", "group": "心理学基础", "description": "理解并感受他人情绪的能力，人际关系的关键。"},
+                {"id": "边界", "group": "心理学基础", "description": "个人心理空间和限制，区分自我与他人，维护自我完整性。"}
+            ],
+            "links": [
+                {"source": "精神分析", "target": "自我结构", "type": "包含"},
+                {"source": "自我结构", "target": "本我", "type": "构成"},
+                {"source": "自我结构", "target": "自我", "type": "构成"},
+                {"source": "自我结构", "target": "超我", "type": "构成"},
+                {"source": "精神分析", "target": "防御机制", "type": "相关"},
+
+                {"source": "依恋理论", "target": "安全型依恋", "type": "类型"},
+                {"source": "依恋理论", "target": "焦虑型依恋", "type": "类型"},
+                {"source": "依恋理论", "target": "回避型依恋", "type": "类型"},
+                {"source": "依恋理论", "target": "混乱型依恋", "type": "类型"},
+                {"source": "依恋理论", "target": "内在小孩", "type": "影响"}, /* 新增关联 */
+
+                {"source": "发展心理学", "target": "成长阶段", "type": "包含"},
+                {"source": "发展心理学", "target": "发展危机", "type": "包含"},
+                {"source": "发展心理学", "target": "内在小孩", "type": "影响"}, /* 新增关联 */
+
+                {"source": "创伤理论", "target": "创伤反应", "type": "包含"},
+                {"source": "创伤理论", "target": "PTSD", "type": "包含"},
+                {"source": "创伤理论", "target": "复杂性创伤", "type": "包含"},
+                {"source": "创伤理论", "target": "受伤的内在小孩", "type": "相关"}, /* 新增关联 */
+
+                {"source": "内在小孩", "target": "受伤的内在小孩", "type": "包含"},
+                {"source": "内在小孩", "target": "自然的内在小孩", "type": "包含"},
+
+                {"source": "自我", "target": "防御机制", "type": "使用"},
+                {"source": "依恋理论", "target": "共情", "type": "相关"},
+                {"source": "自我", "target": "边界", "type": "建立"}
+            ]
+        };
+
+        // D3 概念图谱渲染逻辑
+        function createConceptGraph(data, containerId) {
+            const svgElement = document.getElementById(containerId);
+            if (!svgElement) {
+                console.error(`SVG element with ID "${containerId}" not found.`);
+                return;
+            }
+
+            const svg = d3.select(svgElement);
+            // 获取父容器的实时宽度，并设置SVG的宽度
+            const containerDiv = d3.select("#concept-graph-container").node();
+            const width = containerDiv.clientWidth;
+            const height = +svg.attr('height'); // 使用HTML中设置的固定高度
+
+            svg.attr('width', width); // 设置SVG的宽度
+
+            // 清除旧的图谱（如果存在），防止重复渲染
+            svg.selectAll('*').remove();
+
+            const g = svg.append('g'); // 用于缩放和平移
+
+            // 定义颜色比例尺
+            const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+            // 力模拟器
+            const simulation = d3.forceSimulation(data.nodes)
+                .force('link', d3.forceLink(data.links).id(d => d.id).distance(100))
+                .force('charge', d3.forceManyBody().strength(-300))
+                .force('center', d3.forceCenter(width / 2, height / 2));
+
+            // 绘制链接
+            let link = g.append('g')
+                .attr('class', 'links')
+                .selectAll('line')
+                .data(data.links)
+                .join('line')
+                .attr('class', 'link')
+                .attr('stroke-width', d => Math.sqrt(d.value || 1));
+
+            // 绘制节点
+            let node = g.append('g')
+                .attr('class', 'nodes')
+                .selectAll('circle')
+                .data(data.nodes)
+                .join('circle')
+                .attr('r', 10)
+                .attr('fill', d => color(d.group))
+                .attr('class', 'node-circle')
+                .call(drag(simulation)); // 拖拽功能
+
+            // 添加节点文本标签
+            let labels = g.append('g')
+                .attr('class', 'labels')
+                .selectAll('text')
+                .data(data.nodes)
+                .join('text')
+                .text(d => d.id)
+                .attr('class', 'node-label')
+                .attr('dx', 12)
+                .attr('dy', 4);
+
+            // 工具提示 (Tooltip)
+            const tooltip = d3.select("#tooltip");
+
+            node.on("mouseover", function(event, d) {
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                tooltip.html(`<strong>${d.id}</strong><br/>${d.description || '无描述'}`)
+                    .style("left", (event.pageX + 10) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(d) {
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            })
+            .on("click", function(event, d) {
+                // 点击节点跳转到详细页面的逻辑
+                console.log(`点击了概念: ${d.id}`);
+                // 在实际应用中，这里可以执行路由跳转，例如：
+                // window.location.href = `/knowledge/${d.id}`;
+                alert(`模拟跳转到 ${d.id} 的详细页面。`);
+            });
+
+
+            // 更新位置函数
+            simulation.on('tick', () => {
+                link
+                    .attr('x1', d => d.source.x)
+                    .attr('y1', d => d.source.y)
+                    .attr('x2', d => d.target.x)
+                    .attr('y2', d => d.target.y);
+
+                node
+                    .attr('cx', d => d.x)
+                    .attr('cy', d => d.y);
+
+                labels
+                    .attr('x', d => d.x)
+                    .attr('y', d => d.y);
+            });
+
+            // 拖拽函数
+            function drag(simulation) {
+                function dragstarted(event, d) {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x;
+                    d.fy = d.y;
+                }
+
+                function dragged(event, d) {
+                    d.fx = event.x;
+                    d.fy = event.y;
+                }
+
+                function dragended(event, d) {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null;
+                    d.fy = null;
+                }
+
+                return d3.drag()
+                    .on('start', dragstarted)
+                    .on('drag', dragged)
+                    .on('end', dragended);
+            }
+
+            // 缩放和平移功能
+            const zoom = d3.zoom()
+                .scaleExtent([0.5, 8]) // 缩放范围
+                .on('zoom', (event) => {
+                    g.attr('transform', event.transform);
+                });
+
+            svg.call(zoom);
+
+            // **筛选功能 (示例)**
+            d3.select("#theory-filter").on("change", function() {
+                const selectedGroup = this.value;
+                let filteredNodes = [];
+                let filteredLinks = [];
+
+                if (selectedGroup === "all") {
+                    filteredNodes = data.nodes;
+                    filteredLinks = data.links;
+                } else {
+                    // 过滤节点：包括直接属于该组的节点，和其子节点
+                    const primaryNodes = data.nodes.filter(d => d.group === selectedGroup);
+                    const relatedNodeIds = new Set(primaryNodes.map(n => n.id));
+
+                    // 找出所有与primaryNodes相关的节点 (即它们的 parent 属性是 primaryNodes 中的 id)
+                    const secondaryNodes = data.nodes.filter(d => d.parent && relatedNodeIds.has(d.parent));
+
+                    // 最终的过滤节点列表
+                    filteredNodes = [...primaryNodes, ...secondaryNodes];
+
+                    // 确保过滤后的节点唯一
+                    const uniqueFilteredNodes = Array.from(new Set(filteredNodes));
+
+                    // 过滤链接：只保留两端都在uniqueFilteredNodes中的链接
+                    const uniqueFilteredNodeIds = new Set(uniqueFilteredNodes.map(n => n.id));
+                    filteredLinks = data.links.filter(l => uniqueFilteredNodeIds.has(l.source.id) && uniqueFilteredNodeIds.has(l.target.id));
+                }
+
+                // 更新模拟器的节点和链接数据
+                simulation.nodes(filteredNodes);
+                simulation.force("link", d3.forceLink(filteredLinks).id(d => d.id).distance(100));
+
+                // 重新绑定数据并更新元素
+                // 关键修复：直接从 'g' 组重新选择元素，而不是使用旧的 'node' 变量
+                node = g.selectAll('.node-circle').data(filteredNodes, d => d.id)
+                    .join(
+                        enter => enter.append('circle').attr('r', 10).attr('fill', d => color(d.group)).attr('class', 'node-circle').call(drag(simulation)),
+                        update => update,
+                        exit => exit.remove()
+                    );
+
+                link = g.selectAll('.link').data(filteredLinks, d => `${d.source.id}-${d.target.id}`)
+                    .join(
+                        enter => enter.append('line').attr('stroke', '#cccccc').attr('stroke-opacity', 0.6).attr('stroke-width', d => Math.sqrt(d.value || 1)).attr('class', 'link'),
+                        update => update,
+                        exit => exit.remove()
+                    );
+
+                labels = g.selectAll('.node-label').data(filteredNodes, d => d.id)
+                    .join(
+                        enter => enter.append('text').text(d => d.id).attr('font-size', 10).attr('dx', 12).attr('dy', 4).attr('class', 'node-label'),
+                        update => update,
+                        exit => exit.remove()
+                    );
+
+                simulation.alpha(1).restart(); // 重新加热模拟器，让节点重新布局
+            });
+
+            // 监听窗口大小变化，重新调整SVG宽度并重启模拟
+            window.addEventListener('resize', () => {
+                const newWidth = containerDiv.clientWidth;
+                svg.attr('width', newWidth);
+                simulation.force('center', d3.forceCenter(newWidth / 2, height / 2));
+                simulation.alpha(1).restart();
+            });
+
+        }
+
+        // 页面加载完成后调用
+        window.onload = function() {
+            createConceptGraph(graphData, 'concept-graph');
+        };
+
+    </script>
+</body>
+</html>
