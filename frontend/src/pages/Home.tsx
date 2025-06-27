@@ -21,7 +21,7 @@ const Home: React.FC = () => {
           </div>
         </Col>
         <Col md={6} className="text-center">
-          <Image src="/images/yezi.jpg" roundedCircle fluid style={{ maxWidth: '70%' }} />
+          <Image src={process.env.PUBLIC_URL + "/images/yezi.jpg"} roundedCircle fluid style={{ maxWidth: '70%' }} />
         </Col>
       </Row>
 

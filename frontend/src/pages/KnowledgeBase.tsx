@@ -18,9 +18,9 @@ const TheoryBase: React.FC = () => {
       
       <div className="theory-categories mb-4">
         <Tab.Container defaultActiveKey="psychology-basics">
-          <Row>
-            <Col md={3}>
-              <Nav variant="pills" className="flex-column">
+        <Row>
+          <Col xs={12} md={3}>
+            <Nav variant="pills" className="flex-column mb-3 mb-md-0">
                 <Nav.Item>
                   <Nav.Link eventKey="psychology-basics" className="sidebar-nav-link">心理学基础</Nav.Link>
                 </Nav.Item>
@@ -39,6 +39,9 @@ const TheoryBase: React.FC = () => {
                 <Nav.Item>
                   <Nav.Link eventKey="practical-application" className="sidebar-nav-link">精神分析实践应用</Nav.Link>
                 </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="family-systems" className="sidebar-nav-link">家庭系统</Nav.Link>
+                </Nav.Item>
               </Nav>
             </Col>
             <Col md={9}>
@@ -56,12 +59,12 @@ const TheoryBase: React.FC = () => {
                         <li><strong>人本主义心理学</strong>：强调个体的自我实现和内在潜能</li>
                         <li><strong>精神分析心理学</strong>：探索无意识过程对思想和行为的影响</li>
                         <li><strong>社会心理学</strong>：研究社会环境如何影响个体行为和思想</li>
-                        <li><strong>发展心理学</strong>：研究个体在生命周期中的心理发展过程</li>
+                        <li><strong>发展心理学</strong>：研究个体在生命周期中的脑发展过程</li>
                         <li><strong>积极心理学</strong>：关注人类的优势、幸福感和心理健康</li>
                       </ul>
                       
                       <h5>基本概念</h5>
-                      <Accordion className="mb-4">
+                      <Accordion className="mb-4" alwaysOpen>
                         <Accordion.Item eventKey="0">
                           <Accordion.Header>
                             <h6 className="mb-0">意识与无意识</h6>
@@ -71,7 +74,7 @@ const TheoryBase: React.FC = () => {
                             <ul>
                               <li><strong>意识</strong>：当前觉察到的思想、感受和感知</li>
                               <li><strong>前意识</strong>：暂时不在意识中但可被唤起的内容</li>
-                              <li><strong>无意识</strong>：不易被直接觉察但影响行为的心理内容</li>
+                              <li><strong>无意识</strong>：不易被直接觉察但影响行为的脑内容</li>
                             </ul>
                             <p>无意识过程对我们的行为、情绪和决策有深远影响，通过梦境、失误行为和自由联想等方式表现出来。</p>
                           </Accordion.Body>
@@ -93,7 +96,7 @@ const TheoryBase: React.FC = () => {
                           </Accordion.Body>
                         </Accordion.Item>
                         
-                        <Accordion.Item eventKey="2">
+                        <Accordion.Item eventKey="6">
                           <Accordion.Header>
                             <h6 className="mb-0">人格与自我</h6>
                           </Accordion.Header>
@@ -121,7 +124,7 @@ const TheoryBase: React.FC = () => {
                               <li><strong>操作性条件反射</strong>：通过强化和惩罚塑造行为</li>
                               <li><strong>观察学习</strong>：通过观察他人行为及其后果来学习</li>
                               <li><strong>短时记忆与长时记忆</strong>：不同类型的记忆存储系统</li>
-                              <li><strong>内隐记忆与外显记忆</strong>：无意识和有意识的记忆形式</li>
+                              <li><strong>内隐记忆与外显记忆</strong>：无板和有意识的记忆形式</li>
                             </ul>
                             <p>理解学习和记忆的原理有助于我们更有效地获取新技能和改变习惯。</p>
                           </Accordion.Body>
@@ -148,6 +151,21 @@ const TheoryBase: React.FC = () => {
                       <Accordion className="mb-4">
                         <Accordion.Item eventKey="0">
                           <Accordion.Header>
+                            <h6 className="mb-0">皮亚杰认知发展理论</h6>
+                          </Accordion.Header>
+                          <Accordion.Body>
+                            <p>皮亚杰理论关注儿童如何通过与环境互动构建知识：</p>
+                            <ul>
+                              <li><strong>感知运动阶段(0-2岁)</strong>：通过感官和动作探索世界</li>
+                              <li><strong>前运算阶段(2-7岁)</strong>：发展符号思维但缺乏逻辑</li>
+                              <li><strong>具体运算阶段(7-11岁)</strong>：发展逻辑思维但限于具体事物</li>
+                              <li><strong>形式运算阶段(11岁以上)</strong>：发展抽象和假设思维能力</li>
+                            </ul>
+                            <p>核心概念：图式、同化、顺应、平衡</p>
+                          </Accordion.Body>
+                        </Accordion.Item>
+                        <Accordion.Item eventKey="1">
+                          <Accordion.Header>
                             <h6 className="mb-0">心理动力学理论</h6>
                           </Accordion.Header>
                           <Accordion.Body>
@@ -161,7 +179,7 @@ const TheoryBase: React.FC = () => {
                           </Accordion.Body>
                         </Accordion.Item>
                         
-                        <Accordion.Item eventKey="1">
+                        <Accordion.Item eventKey="2">
                           <Accordion.Header>
                             <h6 className="mb-0">行为主义理论</h6>
                           </Accordion.Header>
@@ -176,7 +194,7 @@ const TheoryBase: React.FC = () => {
                           </Accordion.Body>
                         </Accordion.Item>
                         
-                        <Accordion.Item eventKey="2">
+                        <Accordion.Item eventKey="6">
                           <Accordion.Header>
                             <h6 className="mb-0">认知理论</h6>
                           </Accordion.Header>
@@ -215,7 +233,7 @@ const TheoryBase: React.FC = () => {
                             <ul>
                               <li>强调社会互动和文化背景的重要性</li>
                               <li>关注社会规范、角色和群体影响</li>
-                              <li>探索文化差异对心理过程的影响</li>
+                              <li>探索文化差异对脑过程的影响</li>
                             </ul>
                             <p>代表人物：维果茨基、布朗芬布伦纳</p>
                           </Accordion.Body>
@@ -225,7 +243,7 @@ const TheoryBase: React.FC = () => {
                       <h5>对自我养育的意义</h5>
                       <p>心理学基础知识帮助我们：</p>
                       <ul>
-                        <li>理解心理运作的基本原理，为自我认知提供科学框架</li>
+                        <li>理解脑运作的基本原理，为自我认知提供科学框架</li>
                         <li>识别和改变不健康的思维和行为模式</li>
                         <li>了解情绪的来源和调节方法</li>
                         <li>认识到早期经历对当前行为和关系的影响</li>
@@ -263,16 +281,16 @@ const TheoryBase: React.FC = () => {
                               <li>过度强调性本能和攻击性驱力</li>
                               <li>理论建立在19世纪维多利亚时代的社会背景上</li>
                               <li>缺乏科学实证支持，难以通过实验验证</li>
-                              <li>对女性心理发展的解释存在性别偏见</li>
-                              <li>忽视社会文化因素对心理发展的影响</li>
-                              <li>过度简化复杂的心理现象</li>
+                              <li>对女性脑发展的解释存在性别偏见</li>
+                              <li>忽视社会文化因素对脑发展的影响</li>
+                              <li>过度简化复杂的脑现象</li>
                             </ul>
                             
                             <p>尽管存在局限性，弗洛伊德的理论仍为理解无意识过程、防御机制和早期经历的重要性奠定了基础。</p>
                           </Accordion.Body>
                         </Accordion.Item>
                         
-                        <Accordion.Item eventKey="1">
+                        <Accordion.Item eventKey="4">
                           <Accordion.Header>
                             <h5 className="mb-0">克莱因学派理论</h5>
                           </Accordion.Header>
@@ -534,6 +552,206 @@ const TheoryBase: React.FC = () => {
                     </Card.Body>
                   </Card>
                 </Tab.Pane>
+                <Tab.Pane eventKey="family-systems">
+                  <Card>
+                    <Card.Body>
+                      <h4>家庭系统</h4>
+                      <p>了解家庭动力和原生家庭对个人发展的影响</p>
+
+                      <h5>家庭系统理论的起源</h5>
+                      <p>家庭系统理论起源于20世纪中期，是由多个领域的理论整合而成的。其中最具影响力的是：</p>
+                      <ul>
+                        <li><strong>穆瑞·鲍恩（Murray Bowen）的家庭系统理论</strong>：他将家庭视为一个情感单位，强调家庭成员之间的相互依存关系。</li>
+                        <li><strong>萨尔瓦多·米纽钦（Salvador Minuchin）的结构家庭治疗</strong>：关注家庭结构、界限和子系统。</li>
+                        <li><strong>弗吉尼亚·萨提尔（Virginia Satir）的沟通理论</strong>：强调家庭沟通模式对成员心理健康的影响。</li>
+                        <li><strong>一般系统理论</strong>：由生物学家路德维希·冯·贝塔朗菲（Ludwig von Bertalanffy）提出，认为系统是相互关联的部分组成的整体，整体大于部分之和。</li>
+                      </ul>
+                      <p>家庭系统理论将家庭视为一个复杂的互动系统，而不仅仅是个体的集合。这一理论框架帮助我们理解家庭成员如何相互影响，以及家庭模式如何代代相传。</p>
+
+                      <h5>核心概念</h5>
+                      <h6>家庭作为情感系统</h6>
+                      <p>家庭是一个情感系统，其中每个成员都通过情感纽带相互连接。这些情感连接形成了家庭的基本结构，影响着每个成员的思想、感受和行为。在这个系统中：</p>
+                      <ul>
+                        <li>成员之间的情感反应是相互关联的</li>
+                        <li>一个成员的变化会影响整个系统</li>
+                        <li>家庭倾向于维持稳定状态（平衡），即使这种平衡是不健康的</li>
+                      </ul>
+
+                      <h6>分化与融合</h6>
+                      <p>分化是指一个人在保持与家庭情感连接的同时，能够发展独立的自我认同和自主性的能力。高度分化的个体能够：</p>
+                      <ul>
+                        <li>区分思想和情感</li>
+                        <li>在亲密关系中保持自我</li>
+                        <li>不受家庭情绪过程的过度影响</li>
+                      </ul>
+                      <p>相反，融合是指个体与家庭系统高度纠缠，难以发展独立的自我。低分化的个体往往：</p>
+                      <ul>
+                        <li>情绪反应强烈</li>
+                        <li>难以在关系中保持自我</li>
+                        <li>容易受到家庭情绪的影响</li>
+                      </ul>
+
+                      <h6>三角关系</h6>
+                      <p>三角关系是家庭系统中最小的稳定情感单位，由三个人组成。当两个人之间的关系紧张时，他们往往会将第三方拉入，以减轻紧张。这种模式可能表现为：</p>
+                      <ul>
+                        <li>父母将孩子卷入他们的冲突</li>
+                        <li>一方与外部人员结盟来对抗配偶</li>
+                        <li>将注意力转移到孩子的问题上，以避免处理夫妻关系</li>
+                      </ul>
+
+                      <h5>家庭角色与模式</h5>
+                      <h6>家庭角色</h6>
+                      <p>在家庭系统中，成员往往会承担特定的角色，这些角色有助于维持家庭的功能和平衡。常见的家庭角色包括：</p>
+                      <ul>
+                        <li><strong>英雄/成功者</strong>：通过成就为家庭带来荣誉，分散对家庭问题的注意力</li>
+                        <li><strong>替罪羊</strong>：承担家庭问题的责任，成为家庭冲突的焦点</li>
+                        <li><strong>失踪者</strong>：通过情感或物理上的退缩来逃避家庭冲突</li>
+                        <li><strong>小丑/开心果</strong>：通过幽默和娱乐来缓解家庭紧张</li>
+                        <li><strong>照顾者</strong>：承担照顾他人情感需求的责任</li>
+                      </ul>
+                      <p>这些角色往往在童年形成，并可能延续到成年生活中，影响个体的自我认知和人际关系模式。</p>
+
+                      <h6>家庭规则与界限</h6>
+                      <p>每个家庭都有明确或隐含的规则，定义了什么是可接受的行为和沟通方式。家庭界限则定义了系统内外的信息和情感流动：</p>
+                      <ul>
+                        <li><strong>刚性界限</strong>：过于严格，限制了情感交流和支持</li>
+                        <li><strong>弥散界限</strong>：过于松散，导致角色混淆和过度卷入</li>
+                        <li><strong>清晰界限</strong>：平衡了亲密和自主，允许健康的情感交流</li>
+                      </ul>
+
+                      <h6>家庭互动模式</h6>
+                      <p>家庭成员之间的互动形成了可预测的模式，这些模式往往是循环的，并且会自我强化。常见的不健康互动模式包括：</p>
+                      <ul>
+                        <li><strong>追逐-逃避模式</strong>：一方寻求亲密，另一方退缩，导致循环加剧</li>
+                        <li><strong>批评-防御模式</strong>：一方批评，另一方防御，导致沟通障碍</li>
+                        <li><strong>过度保护模式</strong>：阻止家庭成员面对挑战和发展能力</li>
+                        <li><strong>控制-反抗模式</strong>：权力斗争导致持续冲突</li>
+                      </ul>
+
+                      <h5>代际传递</h5>
+                      <h6>多代传递过程</h6>
+                      <p>家庭模式、信念和行为往往会通过代际传递影响多代人。这种传递可能通过以下方式发生：</p>
+                      <ul>
+                        <li><strong>建模和模仿</strong>：子女通过观察父母的行为学习关系模式</li>
+                        <li><strong>情感教导</strong>：父母直接或间接教导子女如何体验和表达情感</li>
+                        <li><strong>家庭叙事和神话</strong>：关于家庭历史和身份的故事塑造自我认知</li>
+                        <li><strong>未解决的情感问题</strong>：上一代未处理的创伤和冲突会投射到下一代</li>
+                      </ul>
+
+                      <h6>家庭创伤的传递</h6>
+                      <p>创伤经历可以跨代传递，影响后代的心理健康和关系模式。这种传递可能通过以下机制发生：</p>
+                      <ul>
+                        <li><strong>直接传递</strong>：通过虐待或忽视的循环</li>
+                        <li><strong>间接传递</strong>：通过父母因创伤导致的养育方式问题</li>
+                        <li><strong>沉默和秘密</strong>：未被承认的家庭创伤仍会影响家庭动力</li>
+                        <li><strong>生物学机制</strong>：研究表明创伤可能通过表观遗传变化影响后代</li>
+                      </ul>
+
+                      <h6>打破代际循环</h6>
+                      <p>打破不健康的代际模式需要觉察、理解和有意识的改变。关键步骤包括：</p>
+                      <ul>
+                        <li>识别家庭中的重复模式</li>
+                        <li>理解这些模式的起源和功能</li>
+                        <li>发展自我觉察和情绪调节能力</li>
+                        <li>建立新的、更健康的关系模式</li>
+                        <li>在必要时寻求专业支持</li>
+                      </ul>
+
+                      <h5>家庭重构</h5>
+                      <h6>重新评估原生家庭</h6>
+                      <p>重新评估原生家庭的影响是个人成长的重要部分。这个过程包括：</p>
+                      <ul>
+                        <li>以成人视角审视童年经历</li>
+                        <li>理解父母作为有缺陷的人类，而非理想化或妖魔化他们</li>
+                        <li>识别家庭中的健康和不健康模式</li>
+                        <li>承认家庭经历对自己的影响，同时不将自己定义为受害者</li>
+                      </ul>
+
+                      <h6>建立健康界限</h6>
+                      <p>与原生家庭建立健康界限是个人分化的重要部分：</p>
+                      <ul>
+                        <li>明确自己的需求和限制</li>
+                        <li>学会说"不"而不感到内疚</li>
+                        <li>在保持联系的同时维护自主性</li>
+                        <li>根据当前关系的健康程度调整互动方式</li>
+                      </ul>
+
+                      <h6>创造新的家庭叙事</h6>
+                      <p>重写自己的家庭故事可以帮助整合过去的经历并创造新的意义：</p>
+                      <ul>
+                        <li>识别家庭叙事中的限制性信念</li>
+                        <li>发展更加平衡和富有同情心的理解</li>
+                        <li>承认困难的同时也认可韧性和成长</li>
+                        <li>创造包含希望和可能性的新叙事</li>
+                      </ul>
+
+                      <h6>发展新的关系模式</h6>
+                      <p>基于对家庭模式的理解，有意识地发展新的关系方式：</p>
+                      <ul>
+                        <li>识别自己在关系中的模式和触发点</li>
+                        <li>练习新的沟通和冲突解决技巧</li>
+                        <li>培养情感觉察和表达能力</li>
+                        <li>在当前关系中建立健康的互动循环</li>
+                      </ul>
+
+                      <h5>实践方法</h5>
+                      <h6>家庭图谱（家谱图）</h6>
+                      <p>绘制家庭图谱是理解家庭系统的有力工具，它可以帮助：</p>
+                      <ul>
+                        <li>可视化家庭结构和关系模式</li>
+                        <li>识别跨代重复的模式</li>
+                        <li>发现家庭中的三角关系</li>
+                        <li>理解重大生活事件和转变的影响</li>
+                      </ul>
+                      <p>家庭图谱使用特定符号表示家庭成员、关系类型和重要事件，通常覆盖至少三代人。</p>
+
+                      <h6>家庭雕塑</h6>
+                      <p>家庭雕塑是一种体验式技术，通过摆放人物位置来表现家庭关系：</p>
+                      <ul>
+                        <li>使用实物（如玩偶或椅子）代表家庭成员</li>
+                        <li>根据情感距离和权力关系摆放位置</li>
+                        <li>观察自己对不同摆放的情感反应</li>
+                        <li>尝试不同的排列，体验可能的变化</li>
+                      </ul>
+
+                      <h6>角色扮演和空椅技术</h6>
+                      <p>这些技术可以帮助探索和转化家庭关系：</p>
+                      <ul>
+                        <li>与"想象中的家人"对话，表达未说出的感受</li>
+                        <li>扮演不同家庭成员的角色，发展同理心</li>
+                        <li>通过角色转换，体验不同的互动方式</li>
+                        <li>练习新的沟通模式和回应方式</li>
+                      </ul>
+
+                      <h6>家庭日记和反思</h6>
+                      <p>持续的反思和记录可以深化对家庭系统的理解：</p>
+                      <ul>
+                        <li>记录家庭互动中的模式和触发点</li>
+                        <li>探索自己的情感反应和内在体验</li>
+                        <li>识别自己在家庭系统中的角色和贡献</li>
+                        <li>追踪随时间推移的变化和成长</li>
+                      </ul>
+
+                      <h5>延伸资源</h5>
+                      <h6>推荐书籍</h6>
+                      <ul>
+                        <li>《家庭如何塑造人》（Families and How to Survive Them）- 罗宾·斯凯纳（Robin Skynner）和约翰·克里斯（John Cleese）</li>
+                        <li>《走出原生家庭》（Toxic Parents）- 苏珊·福沃德（Susan Forward）</li>
+                        <li>《不完美的父母：如何摆脱原生家庭的阴影》- 林德赛·吉布森（Lindsay C. Gibson）</li>
+                        <li>《家庭治疗的八大概念》（Eight Concepts）- 罗比·肯特（Robbie Kentor）</li>
+                        <li>《亲密关系中的舞蹈》（Dance of Intimacy）- 哈丽特·勒纳（Harriet Lerner）</li>
+                      </ul>
+
+                      <h6>在线资源</h6>
+                      <ul>
+                        <li>家庭系统理论在线课程和讲座</li>
+                        <li>家庭图谱绘制工具和指南</li>
+                        <li>家庭系统治疗师目录</li>
+                        <li>原生家庭议题支持小组</li>
+                      </ul>
+                    </Card.Body>
+                  </Card>
+                </Tab.Pane>
               </Tab.Content>
             </Col>
           </Row>
@@ -544,6 +762,8 @@ const TheoryBase: React.FC = () => {
 };
 
 const ResourceLibrary: React.FC = () => {
+  const [selectedTopic, setSelectedTopic] = React.useState('全部');
+  const [selectedType, setSelectedType] = React.useState('全部');
   return (
     <div className="resource-library-section">
       <h2>资源推荐</h2>
@@ -586,7 +806,7 @@ const ResourceLibrary: React.FC = () => {
                   </div>
                   <h5>《自我与防御机制》</h5>
                   <p className="text-muted">安娜·弗洛伊德</p>
-                  <p className="mb-3">深入解析心理防御机制的运作方式及其在自我发展中的作用。</p>
+                  <p className="mb-3">深入解析脑防御机制的运作方式及其在自我发展中的作用。</p>
                   <div className="d-flex justify-content-between align-items-center">
                     <span className="text-muted">页数: 320</span>
                     <button className="btn btn-sm btn-outline-primary">阅读笔记</button>
@@ -834,7 +1054,7 @@ const ResourceLibrary: React.FC = () => {
                   </div>
                   <h5>成人发展中的关键转折点</h5>
                   <p className="text-muted">哈佛成人发展研究</p>
-                  <p className="mb-3">75年纵向研究揭示心理发展的关键因素和模式。</p>
+                  <p className="mb-3">75年纵向研究揭示脑发展的关键因素和模式。</p>
                   <div className="d-flex justify-content-between align-items-center">
                     <span className="text-muted">阅读时间: 35分钟</span>
                     <button className="btn btn-sm btn-outline-primary">下载PDF</button>
@@ -888,7 +1108,7 @@ const Glossary: React.FC = () => {
           <Card.Body>
             <h5 id="attachment">依恋 (Attachment)</h5>
             <p>人与特定他人之间的情感联结，最初在婴儿与照顾者之间形成。依恋关系的质量影响个体的情感发展、关系模式和心理健康。</p>
-            <p><strong>相关术语：</strong> 安全型依恋、焦虑型依恋、回避型依恋、混乱型依恋</p>
+            <p><strong>相关术语：</strong> 安全型依恋、焦虑型依恋、回避型依恋、混乱型</p>
           </Card.Body>
         </Card>
         
@@ -962,7 +1182,7 @@ const KnowledgeBase: React.FC = () => {
               </Card.Body>
             </Card>
           </Col>
-          <Col md={9}>
+          <Col xs={12} md={9}>
             <Tab.Content>
               <Tab.Pane eventKey="concept-map">
                 <ConceptMap />
@@ -985,4 +1205,5 @@ const KnowledgeBase: React.FC = () => {
 };
 
 export default KnowledgeBase;
-                               
+                        
+                          

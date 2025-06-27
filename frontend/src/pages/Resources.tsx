@@ -181,7 +181,7 @@ const Resources: React.FC = () => {
         </div>
       ) : (
         <Row className="mb-4">
-          <Col md={8}>
+          <Col md={8} xs={12}>
             {error && <Alert variant="danger">{error}</Alert>}
             {successMessage && <Alert variant="success">{successMessage}</Alert>}
 
@@ -189,7 +189,7 @@ const Resources: React.FC = () => {
             <h2 className="mb-3">推荐资源</h2>
             <Row className="mb-4">
               {/* 推荐资源卡片示例 */}
-              <Col md={6} className="mb-3">
+              <Col md={6} xs={12} className="mb-3">
                 <Card className="h-100 resource-card">
                   <Card.Body>
                     <span className="badge bg-primary mb-2">书籍</span>
@@ -332,7 +332,7 @@ const Resources: React.FC = () => {
             </Card>
           </Col>
           
-          <Col md={4}>
+          <Col md={4} xs={12}>
             <Card className="mb-4">
               <Card.Body>
                 <h3>添加新资源</h3>

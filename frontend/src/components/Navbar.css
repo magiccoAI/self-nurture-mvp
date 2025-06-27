@@ -51,5 +51,28 @@
     padding: 0.3em 0.9em;
     min-width: 44px;
   }
+
+  .navbar-nav {
+    flex-direction: column; /* 垂直堆叠导航链接 */
+    text-align: center; /* 文本居中 */
+  }
+
+  .nav-item {
+    margin: 0.5rem 0; /* 增加垂直间距 */
+  }
+
+  .nav-link {
+    border-left: none; /* 移除左侧边框 */
+    border-bottom: 2px solid transparent; /* 添加底部边框 */
+  }
+
+  .nav-link.active {
+    border-left: none; /* 移除左侧边框 */
+    border-bottom: 2px solid #ffd700; /* 激活状态底部边框 */
+  }
+
+  .nav-link.active::after {
+    display: none; /* 隐藏原有的激活指示条 */
+  }
 }
 

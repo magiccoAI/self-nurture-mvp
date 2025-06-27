@@ -11,7 +11,7 @@ const PracticalGuide: React.FC = () => {
 
       <Tab.Container id="practice-tabs" defaultActiveKey="self-compassion">
         <Row>
-          <Col md={3}>
+          <Col md={3} xs={12}>
             <Nav variant="pills" className="flex-column mb-4">
               <Nav.Item>
                 <Nav.Link eventKey="self-compassion">自我关怀练习</Nav.Link>
@@ -37,7 +37,7 @@ const PracticalGuide: React.FC = () => {
               </Card.Body>
             </Card>
           </Col>
-          <Col md={9}>
+          <Col md={9} xs={12}>
             <Tab.Content>
               <Tab.Pane eventKey="self-compassion">
                 <div className="self-compassion-section">
@@ -52,7 +52,7 @@ const PracticalGuide: React.FC = () => {
                   <p>自我关怀是以友善、接纳和理解的态度对待自己，特别是在面对困难、失败或痛苦时。它包含三个核心要素：</p>
                   
                   <Row className="mb-4">
-                    <Col md={4}>
+                    <Col md={4} xs={12}>
                       <Card className="h-100">
                         <Card.Body className="text-center">
                           <i className="bi bi-heart module-icon"></i>
@@ -135,7 +135,7 @@ const PracticalGuide: React.FC = () => {
                       <p>每天安排至少一次"自我关怀休息"，可以是5分钟或更长时间，做一些能让你感到舒适、放松或滋养的事情，例如：</p>
                       
                       <Row>
-                        <Col md={6}>
+                        <Col md={6} xs={12}>
                           <ul>
                             <li>喝一杯茶，专注地品味</li>
                             <li>进行几次深呼吸</li>
@@ -186,10 +186,11 @@ const PracticalGuide: React.FC = () => {
                       <p>情绪词汇表可以帮助你更准确地命名情绪：</p>
                       
                       <Row>
-                        <Col md={3}>
+                        <Col md={3} xs={12}>
                           <h6>愤怒家族</h6>
                           <ul className="list-unstyled">
                             <li>恼怒</li>
+
                             <li>愤慨</li>
                             <li>烦躁</li>
                             <li>恼火</li>

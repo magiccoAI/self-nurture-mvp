@@ -137,6 +137,46 @@ body {
   .quote {
     font-size: 1rem;
   }
+
+  /* 全局响应式调整 */
+  body {
+    font-size: 14px;
+  }
+
+  .app-container {
+    padding: 0 15px;
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .sidebar-nav-link {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+  }
+
+  .progress-badge {
+    font-size: 0.7em;
+    padding: 0.3em 0.6em;
+  }
+
+  .accordion-button {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  .accordion-body {
+    padding: 1rem;
+  }
 }
 
 /* 确保所有文本颜色都符合设计 */

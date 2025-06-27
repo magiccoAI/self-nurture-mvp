@@ -22,6 +22,55 @@
   gap: 1rem;
 }
 
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroDescription {
+    font-size: 1rem;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+  }
+
+  .heroImageContainer {
+    margin-top: 2rem;
+  }
+
+  .heroImageWrapper {
+    width: 200px;
+    height: 200px;
+  }
+
+  .heroImage {
+    width: 200px;
+    height: 200px;
+  }
+
+  .conceptSection {
+    padding: 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+
+  .conceptIconWrapper {
+    width: 60px;
+    height: 60px;
+  }
+
+  .timelineLine {
+    display: none; /* Hide vertical line on small screens */
+  }
+
+  .timelineCard {
+    margin-bottom: 1rem;
+  }
+}
+
 .exploreButton {
   background-color: var(--white-bg);
   border-color: var(--white-bg);

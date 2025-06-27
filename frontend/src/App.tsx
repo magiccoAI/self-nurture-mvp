@@ -20,6 +20,7 @@ import Tracking from './pages/GrowthTracking';
 import Resources from './pages/Resources';
 import Practice from './pages/PracticalGuide';
 import AboutUsPage from './pages/AboutUsPage';
+import NotesPage from './pages/NotesPage';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/resources" element={<Resources />} />
             <Route path="/practice" element={<Practice />} />
             <Route path="/about-us" element={<AboutUsPage />} />
+            <Route path="/notes" element={<NotesPage />} />
             <Route path="*" element={<Home />} />
           </Routes>
         </div>

@@ -24,7 +24,7 @@ const SelfExploration: React.FC = () => {
       
       <Tab.Container activeKey={activeTab} onSelect={(k) => k && setActiveTab(k)}>
         <Row className="mb-4">
-          <Col md={3}>
+          <Col md={3} xs={12}>
             <Nav variant="pills" className="flex-column">
               <Nav.Item>
                 <Nav.Link eventKey="reflection-journal">梳理成长历程</Nav.Link>
@@ -50,7 +50,7 @@ const SelfExploration: React.FC = () => {
             </Card>
           </Col>
           
-          <Col md={9}>
+          <Col md={9} xs={12}>
             <Tab.Content>
               <Tab.Pane eventKey="reflection-journal">
                 <ReflectionJournal />
