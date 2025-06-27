@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://magiccoai.github.io/self-nurturing-mvp",
+  "homepage": ".",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -33,7 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -b gh-pages -r https://github.com/magiccoAI/self-nurturing-mvp.git -a --dotfiles --history --no-jekyll --add --message \"Deploy to GitHub Pages\" --cname magiccoai.github.io --dest build --404 build/404.html"
+    "deploy": "gh-pages -d docs -b gh-pages -r https://github.com/magiccoAI/self-nurture-mvp.git -a --dotfiles --no-history --nojekyll --add --message \"Deploy to GitHub Pages\" --cname magiccoai.github.io --dest docs"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +54,7 @@
     ]
   },
   "devDependencies": {
-    "@types/d3": "^7.4.3"
+    "@types/d3": "^7.4.3",
+    "fs-extra": "^11.3.0"
   }
 }
