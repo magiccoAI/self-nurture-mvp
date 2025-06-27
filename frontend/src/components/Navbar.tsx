@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
     <BootstrapNavbar 
       bg="primary" 
       expand="lg" 
-      className="py-3 shadow-sm mt-5" style={{ marginTop: '-20px' }}
+      className="py-3 shadow-sm"
     >
       <Container>
         <BootstrapNavbar.Brand as={Link} to="/" className="fw-bold" style={{ color: 'var(--bg-light)' }}>
