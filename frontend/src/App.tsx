@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -24,7 +24,7 @@ import NotesPage from './pages/NotesPage';
 
 function App() {
   return (
-    <Router basename="/self-nurturing-mvp">
+    <HashRouter>
       <div className="App d-flex flex-column min-vh-100">
         <DisclaimerBanner />
          <Navbar />
@@ -60,7 +60,7 @@ function App() {
           </Container>
         </footer>
       </div>
-    </Router>
+    </HashRouter>
   );
 }
 
