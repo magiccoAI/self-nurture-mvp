@@ -1,0 +1,280 @@
+.homeContainer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.heroSection {
+  margin-bottom: 3rem;
+}
+
+.heroTitle {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.heroDescription {
+  font-size: 1.25rem;
+}
+
+.buttonGroup {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroDescription {
+    font-size: 1rem;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+  }
+
+  .heroImageContainer {
+    margin-top: 2rem;
+  }
+
+  .heroImageWrapper {
+    width: 200px;
+    height: 200px;
+  }
+
+  .heroImage {
+    width: 200px;
+    height: 200px;
+  }
+
+  .conceptSection {
+    padding: 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+
+  .conceptIconWrapper {
+    width: 60px;
+    height: 60px;
+  }
+
+  .timelineLine {
+    display: none; /* Hide vertical line on small screens */
+  }
+
+  .timelineCard {
+    margin-bottom: 1rem;
+  }
+}
+
+.exploreButton {
+  background-color: var(--white-bg);
+  border-color: var(--white-bg);
+  color: var(--dark-blue);
+}
+
+.resourcesButton {
+  color: var(--white-bg);
+  border-color: var(--white-bg);
+}
+
+.heroImageContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.heroImageWrapper {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* 确保图片在圆形容器内 */
+}
+
+.heroImageInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroImage {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border: 4px solid white;
+}
+
+.conceptSection {
+  margin-bottom: 3rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-radius: 0.25rem;
+  background-color: var(--white-bg);
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.sectionDivider {
+  width: 50px;
+  height: 4px;
+  background-color: var(--primary-blue);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.25rem;
+}
+
+.sectionDescription {
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+}
+
+.conceptCard {
+  height: 100%;
+  border: none;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.conceptCard:nth-child(1) .conceptIconWrapper {
+  background-color: var(--light-blue);
+}
+
+.conceptCard:nth-child(2) .conceptIconWrapper {
+  background-color: var(--light-green);
+}
+
+.conceptCard:nth-child(3) .conceptIconWrapper {
+  background-color: var(--light-beige);
+}
+
+.conceptIconWrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+
+.conceptCardTitle {
+  color: var(--text-dark);
+}
+
+.howToStartSection {
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+/* 删除空规则集 */
+  /* Add background styles if needed */
+
+
+.timelineLine {
+  top: 60px;
+  left: 50%;
+  width: 4px;
+  height: calc(100% - 120px);
+  background-color: var(--light-gray);
+  transform: translateX(-50%);
+}
+
+.timelineCard {
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  background-color: var(--white-bg);
+  color: var(--text-dark);
+}
+
+.timelineIconWrapper {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.timelineIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+  background-color: var(--dark-blue);
+}
+/* Home.module.css */
+
+.exploreButton {
+  background-color: var(--primary-blue);
+  color: white;
+  border: none;
+}
+
+.resourcesButton {
+  background-color: white;
+  color: var(--primary-blue);
+  border: 1px solid var(--primary-blue);
+}
+
+.heroImageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroImage {
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+}
+
+.how-to-start-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  z-index: 0;
+}
+
+.hover-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+.hover-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
