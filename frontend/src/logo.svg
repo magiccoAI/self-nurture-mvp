@@ -1,0 +1,44 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer light blue circle, representing the outermost layer of the original image -->
+  <circle cx="100" cy="100" r="95" fill="#E0E8F9"/>
+
+  <!-- Inner slightly darker blue circle, representing the middle layer -->
+  <circle cx="100" cy="100" r="88" fill="#D1DBEE"/>
+
+  <!-- The main abstract shape, inspired by the original image's black blob, 
+       and representing hands embracing a seedling/book. 
+       This path is designed to have soft, organic curves. -->
+  <path d="M100 15 C150 15, 185 50, 185 100 C185 150, 150 185, 100 185 C50 185, 15 150, 15 100 C15 50, 50 15, 100 15 Z"
+        fill="#000000"/>
+
+  <!-- Subtle glowing effect around the main shape, mimicking the light halo in the original image -->
+  <defs>
+    <radialGradient id="glowEffect" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#AEC6F7" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#E0E8F9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="100" cy="100" r="80" fill="url(#glowEffect)"/>
+
+  <!-- Seedling/Tree representation within the main shape, with a green gradient -->
+  <defs>
+    <linearGradient id="seedlingGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4CAF50"/>
+      <stop offset="100%" stop-color="#8BC34A"/>
+    </linearGradient>
+  </defs>
+  <!-- Trunk -->
+  <rect x="97" y="80" width="6" height="40" fill="url(#seedlingGradient)"/>
+  <!-- Leaves/Branches - simplified for abstract representation -->
+  <circle cx="100" cy="75" r="10" fill="url(#seedlingGradient)"/>
+  <circle cx="90" cy="90" r="8" fill="url(#seedlingGradient)"/>
+  <circle cx="110" cy="90" r="8" fill="url(#seedlingGradient)"/>
+
+  <!-- Abstract book outline, subtly integrated -->
+  <path d="M70 125 C70 115, 80 110, 100 110 C120 110, 130 115, 130 125 L130 135 C130 145, 120 150, 100 150 C80 150, 70 145, 70 135 Z"
+        fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.7"/>
+  <!-- Book pages lines -->
+  <line x1="100" y1="110" x2="100" y2="150" stroke="#FFFFFF" stroke-width="0.5" opacity="0.7"/>
+  <line x1="85" y1="115" x2="85" y2="145" stroke="#FFFFFF" stroke-width="0.3" opacity="0.7"/>
+  <line x1="115" y1="115" x2="115" y2="145" stroke="#FFFFFF" stroke-width="0.3" opacity="0.7"/>
+</svg>
