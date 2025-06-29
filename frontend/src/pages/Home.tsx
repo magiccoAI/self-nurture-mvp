@@ -13,7 +13,7 @@ const Home: React.FC = () => {
           <h1 className="display-4 mb-3" style={{ color: '#FF7F50' }}>欢迎来到自我养育平台</h1>
           <p className="lead">
             一个帮助你进行自我成长、自我探索和自我管理的综合平台。
-             ourselves重新靠近那个真实的自己。
+            <p>让我们一起重新靠近那个真实的自己。</p>
           </p>
           <div className="d-flex gap-3 mt-4">
             <Button as={Link} to="/knowledge" size="lg" style={{ backgroundColor: '#FFB347', border: 'none' }}>开始探索</Button>
@@ -38,7 +38,7 @@ const Home: React.FC = () => {
           <h2 className="fw-bold mb-4" style={{ color: '#444' }}>
             从理解开始，在关系中重建自己
           </h2>
-          <p className="lead text-muted" style={{ maxWidth: '720px', margin: '0 auto' }}>
+          <p className="lead text-muted" style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'justify', whiteSpace: 'nowrap' }}>
             自我养育不需要完美准备，只需要愿意靠近一点点。这里是你温柔地重新出发的地方。
           </p>
         </Col>
@@ -87,7 +87,7 @@ const Home: React.FC = () => {
               {[
                 ['自我探索', '各类测评和练习，了解自我', '/exploration'],
                 ['成长追踪', '目标记录与阶段性反馈', '/tracking'],
-                ['加入社区', '共享成长经验与动力', '/']
+                ['加入社区', '共享成长经验与动力', '即将推出']
               ].map(([title, desc, link], idx) => (
                 <Col md={4} key={idx}>
                   <Card className="h-100 border-0 shadow-sm">
