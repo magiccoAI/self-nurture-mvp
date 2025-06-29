@@ -66,13 +66,6 @@ const Navbar: React.FC = () => {
               >
                 实践指南
               </Nav.Link>
-            <Nav.Link
-                as={Link}
-                to="/about-us"
-                className={`mx-1 ${isActive('/about-us') ? 'active fw-bold' : ''}`}
-              >
-                关于我们
-              </Nav.Link>
             <Button 
               variant="outline-light" 
               size="sm" 

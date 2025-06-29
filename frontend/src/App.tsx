@@ -1,6 +1,6 @@
 import React from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
-// HashRouter 已在第2行导入，此处删除重复导入
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
@@ -24,7 +24,7 @@ import NotesPage from './pages/NotesPage';
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter basename="/self-nurturing-mvp">
       <div className="App d-flex flex-column min-vh-100">
         <Navbar />
         <DisclaimerBanner />
@@ -52,7 +52,7 @@ function App() {
                 <p className="mb-0 small" style={{ color: 'var(--text-dark)' }}>© {new Date().getFullYear()} 自我养育平台. 保留所有权利.</p>
               </div>
               <div className="d-flex gap-3">
-                <a href="#/about-us" className="text-decoration-none" style={{ color: 'var(--text-dark)' }}>关于我们</a>
+                <a href="/self-nurturing-mvp/about-us" className="text-decoration-none" style={{ color: 'var(--text-dark)' }}>关于我们</a>
                 <a href="#" className="text-decoration-none" style={{ color: 'var(--text-dark)' }}>联系我们</a>
                 <a href="#" className="text-decoration-none" style={{ color: 'var(--text-dark)' }}>隐私政策</a>
               </div>
@@ -60,7 +60,7 @@ function App() {
           </Container>
         </footer>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
