@@ -1,0 +1,78 @@
+/* 默认状态下：更高对比度和可见背景 */
+.nav-link {
+  background-color: rgba(255, 255, 255, 0.1); /* 添加浅色背景提升可读性 */
+  color: #ffffff !important;                 /* 强化字体对比度 */
+  border-left: 4px solid transparent;        /* 左边留出视觉空间用于激活态 */
+}
+
+/* 悬停状态：颜色稍变即可，不用大幅变化 */
+.nav-link:hover,
+.nav-link:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* 激活状态：更明显的左侧指示条和背景 */
+.nav-link.active {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-left: 4px solid #ffd700;  /* 左边突出金色强调 */
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+/* 激活状态样式 */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+  right: 1rem;
+  height: 3px;
+  background-color: white;
+  border-radius: 3px 3px 0 0;
+}
+
+/* 语言切换按钮样式 */
+.btn[disabled], .btn:disabled {
+  opacity: 0.85;
+  background: rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+  border: 1.5px solid #fff !important;
+  cursor: not-allowed;
+}
+
+.btn .bi-translate {
+  font-size: 1.1em;
+  vertical-align: -0.1em;
+}
+
+@media (max-width: 768px) {
+  .navbar .btn {
+    font-size: 0.95em;
+    padding: 0.3em 0.9em;
+    min-width: 44px;
+  }
+
+  .navbar-nav {
+    flex-direction: column; /* 垂直堆叠导航链接 */
+    text-align: center; /* 文本居中 */
+  }
+
+  .nav-item {
+    margin: 0.5rem 0; /* 增加垂直间距 */
+  }
+
+  .nav-link {
+    border-left: none; /* 移除左侧边框 */
+    border-bottom: 2px solid transparent; /* 添加底部边框 */
+  }
+
+  .nav-link.active {
+    border-left: none; /* 移除左侧边框 */
+    border-bottom: 2px solid #ffd700; /* 激活状态底部边框 */
+  }
+
+  .nav-link.active::after {
+    display: none; /* 隐藏原有的激活指示条 */
+  }
+}
+

@@ -1,0 +1,329 @@
+const SelfAssessment: React.FC = () => {
+  const [activeTab, setActiveTab] = useState('attachment');
+  const [assessmentProgress, setAssessmentProgress] = useState({
+    attachment: 0,
+    'inner-child': 0,
+    defense: 0,
+    personality: 0
+  });
+
+  // 更新评估进度
+  const updateProgress = (tab: string, progress: number) => {
+    setAssessmentProgress({
+      ...assessmentProgress,
+      [tab]: progress
+    });
+  };
+
+  // 防御机制常见类型
+  const defenseMechanisms = [
+    { id: 1, name: '否认', description: '拒绝接受现实或事实' },
+    { id: 2, name: '投射', description: '将自己不接受的感受归因于他人' },
+    { id: 3, name: '合理化', description: '为不可接受的行为找合理借口' },
+    { id: 4, name: '退行', description: '面对压力时表现出不成熟的幼稚行为' },
+    { id: 5, name: '升华', description: '将负面冲动转化为社会接受的行为' },
+    { id: 6, name: '压抑', description: '将痛苦记忆推入无意识中' }
+  ];
+
+  return (
+    <div className="self-assessment-section">
+      {/* ...其他部分保持不变... */}
+      
+      <Tab.Container activeKey={activeTab} onSelect={(k) => k && setActiveTab(k)}>
+        <Row className="mb-4">
+          <Col md={3}>
+            {/* 导航标签保持不变... */}
+          </Col>
+          
+          <Col md={9}>
+            <Tab.Content>
+              {/* 依恋类型和内在小孩评估保持不变... */}
+              
+              {/* 防御机制识别评估 - 优化后 */}
+              <Tab.Pane eventKey="defense">
+                <Card>
+                  <Card.Body>
+                    <div className="d-flex justify-content-between align-items-center mb-4">
+                      <h4>防御机制识别</h4>
+                      <span className="badge bg-info">12个问题</span>
+                    </div>
+                    
+                    <Alert variant="warning">
+                      <strong>免责声明：</strong> 防御机制是普遍的心理现象，此评估基于心理学理论，
+                      但结果仅供参考，不能作为专业诊断。如需临床评估，请咨询心理健康专业人士。
+                    </Alert>
+                    
+                    <p>这个评估帮助你识别自己常用的心理防御机制，了解它们如何影响你的思维和行为。</p>
+                    
+                    <div className="progress mb-4" style={{height: '8px'}}>
+                      <div 
+                        className="progress-bar bg-success" 
+                        role="progressbar" 
+                        style={{width: `${assessmentProgress.defense}%`}}
+                        aria-valuenow={assessmentProgress.defense} 
+                        aria-valuemin={0} 
+                        aria-valuemax={100}
+                      ></div>
+                    </div>
+                    
+                    <div className="defense-intro mb-4">
+                      <h5>常见防御机制</h5>
+                      <div className="row">
+                        {defenseMechanisms.map(mechanism => (
+                          <div key={mechanism.id} className="col-md-6 mb-3">
+                            <div className="p-3 bg-light rounded h-100">
+                              <h6 className="fw-bold">{mechanism.name}</h6>
+                              <p className="mb-0 small">{mechanism.description}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="assessment-questions">
+                      <p><strong>请根据你的真实情况回答以下问题:</strong></p>
+                      
+                      <Form>
+                        {/* 问题1 */}
+                        <div className="question-item mb-4 p-3 bg-light rounded">
+                          <p className="fw-medium">1. 当面对批评时，我通常会立刻反驳或指出对方的错误。</p>
+                          <div className="d-flex justify-content-between flex-wrap">
+                            {[1,2,3,4,5].map(num => (
+                              <Form.Check
+                                key={num}
+                                inline
+                                type="radio"
+                                name="defense-q1"
+                                id={`defense-q1-${num}`}
+                                label={num === 1 ? "从不" : 
+                                       num === 2 ? "很少" : 
+                                       num === 3 ? "有时" : 
+                                       num === 4 ? "经常" : "总是"}
+                                onChange={() => updateProgress('defense', Math.min(100, assessmentProgress.defense + 8.33))}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                        
+                        {/* 问题2 */}
+                        <div className="question-item mb-4 p-3 bg-light rounded">
+                          <p className="fw-medium">2. 面对痛苦的事情，我会尽量不去想它，转移注意力到其他事情上。</p>
+                          <div className="d-flex justify-content-between flex-wrap">
+                            {[1,2,3,4,5].map(num => (
+                              <Form.Check
+                                key={num}
+                                inline
+                                type="radio"
+                                name="defense-q2"
+                                id={`defense-q2-${num}`}
+                                label={num === 1 ? "从不" : 
+                                       num === 2 ? "很少" : 
+                                       num === 3 ? "有时" : 
+                                       num === 4 ? "经常" : "总是"}
+                                onChange={() => updateProgress('defense', Math.min(100, assessmentProgress.defense + 8.33))}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                        
+                        {/* 问题3 */}
+                        <div className="question-item mb-4 p-3 bg-light rounded">
+                          <p className="fw-medium">3. 我倾向于为自己的行为找合理的解释，即使这些行为可能伤害了他人。</p>
+                          <div className="d-flex justify-content-between flex-wrap">
+                            {[1,2,3,4,5].map(num => (
+                              <Form.Check
+                                key={num}
+                                inline
+                                type="radio"
+                                name="defense-q3"
+                                id={`defense-q3-${num}`}
+                                label={num === 1 ? "从不" : 
+                                       num === 2 ? "很少" : 
+                                       num === 3 ? "有时" : 
+                                       num === 4 ? "经常" : "总是"}
+                                onChange={() => updateProgress('defense', Math.min(100, assessmentProgress.defense + 8.33))}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                        
+                        <div className="mt-4 d-flex justify-content-between align-items-center">
+                          <div className="text-muted small">
+                            * 完成所有问题可查看完整评估报告
+                          </div>
+                          <Button variant="primary" disabled={assessmentProgress.defense < 100}>
+                            提交评估
+                          </Button>
+                        </div>
+                      </Form>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Tab.Pane>
+              
+              {/* 人格特质分析评估 - 优化后 */}
+              <Tab.Pane eventKey="personality">
+                <Card>
+                  <Card.Body>
+                    <div className="d-flex justify-content-between align-items-center mb-4">
+                      <h4>人格特质分析</h4>
+                      <span className="badge bg-info">15个问题</span>
+                    </div>
+                    
+                    <Alert variant="warning">
+                      <strong>免责声明：</strong> 人格特质分析基于心理学模型，但此评估为简化版，
+                      不能替代专业人格测评。正式人格测评需使用标准化工具并由专业人士解释。
+                    </Alert>
+                    
+                    <p>这个评估帮助你了解自己的核心人格特质，以及它们如何影响你的思维、情感和行为模式。</p>
+                    
+                    <div className="personality-dimensions mb-4">
+                      <h5>主要人格维度</h5>
+                      <div className="row">
+                        <div className="col-md-4 mb-3">
+                          <div className="p-3 bg-light rounded h-100">
+                            <h6 className="fw-bold">开放性</h6>
+                            <p className="small mb-0">对新经验的开放程度、想象力和好奇心</p>
+                          </div>
+                        </div>
+                        <div className="col-md-4 mb-3">
+                          <div className="p-3 bg-light rounded h-100">
+                            <h6 className="fw-bold">尽责性</h6>
+                            <p className="small mb-0">组织性、责任感和目标导向</p>
+                          </div>
+                        </div>
+                        <div className="col-md-4 mb-3">
+                          <div className="p-3 bg-light rounded h-100">
+                            <h6 className="fw-bold">外向性</h6>
+                            <p className="small mb-0">社交活跃度、热情和能量水平</p>
+                          </div>
+                        </div>
+                        <div className="col-md-4 mb-3">
+                          <div className="p-3 bg-light rounded h-100">
+                            <h6 className="fw-bold">宜人性</h6>
+                            <p className="small mb-0">合作性、同理心和信任倾向</p>
+                          </div>
+                        </div>
+                        <div className="col-md-4 mb-3">
+                          <div className="p-3 bg-light rounded h-100">
+                            <h6 className="fw-bold">神经质</h6>
+                            <p className="small mb-0">情绪稳定性和压力敏感性</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="progress mb-4" style={{height: '8px'}}>
+                      <div 
+                        className="progress-bar bg-success" 
+                        role="progressbar" 
+                        style={{width: `${assessmentProgress.personality}%`}}
+                        aria-valuenow={assessmentProgress.personality} 
+                        aria-valuemin={0} 
+                        aria-valuemax={100}
+                      ></div>
+                    </div>
+                    
+                    <div className="assessment-questions">
+                      <p><strong>请根据你的性格特点回答以下问题:</strong></p>
+                      
+                      <Form>
+                        {/* 问题1 */}
+                        <div className="question-item mb-4 p-3 bg-light rounded">
+                          <p className="fw-medium">1. 在社交聚会中，你通常：</p>
+                          <div className="d-flex flex-column">
+                            <Form.Check
+                              type="radio"
+                              name="personality-q1"
+                              id="personality-q1-1"
+                              label="主动与陌生人交谈"
+                              onChange={() => updateProgress('personality', Math.min(100, assessmentProgress.personality + 6.67))}
+                            />
+                            <Form.Check
+                              type="radio"
+                              name="personality-q1"
+                              id="personality-q1-2"
+                              label="只和认识的人交谈"
+                              onChange={() => updateProgress('personality', Math.min(100, assessmentProgress.personality + 6.67))}
+                            />
+                            <Form.Check
+                              type="radio"
+                              name="personality-q1"
+                              id="personality-q1-3"
+                              label="尽量避免交谈"
+                              onChange={() => updateProgress('personality', Math.min(100, assessmentProgress.personality + 6.67))}
+                            />
+                          </div>
+                        </div>
+                        
+                        {/* 问题2 */}
+                        <div className="question-item mb-4 p-3 bg-light rounded">
+                          <p className="fw-medium">2. 你更倾向于：</p>
+                          <div className="d-flex flex-column">
+                            <Form.Check
+                              type="radio"
+                              name="personality-q2"
+                              id="personality-q2-1"
+                              label="按计划行事"
+                              onChange={() => updateProgress('personality', Math.min(100, assessmentProgress.personality + 6.67))}
+                            />
+                            <Form.Check
+                              type="radio"
+                              name="personality-q2"
+                              id="personality-q2-2"
+                              label="灵活处理事情"
+                              onChange={() => updateProgress('personality', Math.min(100, assessmentProgress.personality + 6.67))}
+                            />
+                          </div>
+                        </div>
+                        
+                        {/* 问题3 */}
+                        <div className="question-item mb-4 p-3 bg-light rounded">
+                          <p className="fw-medium">3. 当事情出错时，你通常会：</p>
+                          <div className="d-flex flex-column">
+                            <Form.Check
+                              type="radio"
+                              name="personality-q3"
+                              id="personality-q3-1"
+                              label="保持冷静，寻找解决方案"
+                              onChange={() => updateProgress('personality', Math.min(100, assessmentProgress.personality + 6.67))}
+                            />
+                            <Form.Check
+                              type="radio"
+                              name="personality-q3"
+                              id="personality-q3-2"
+                              label="感到焦虑，担心后果"
+                              onChange={() => updateProgress('personality', Math.min(100, assessmentProgress.personality + 6.67))}
+                            />
+                            <Form.Check
+                              type="radio"
+                              name="personality-q3"
+                              id="personality-q3-3"
+                              label="责怪自己或他人"
+                              onChange={() => updateProgress('personality', Math.min(100, assessmentProgress.personality + 6.67))}
+                            />
+                          </div>
+                        </div>
+                        
+                        <div className="mt-4 d-flex justify-content-between align-items-center">
+                          <div className="text-muted small">
+                            * 完成所有问题可查看完整评估报告
+                          </div>
+                          <Button variant="primary" disabled={assessmentProgress.personality < 100}>
+                            提交评估
+                          </Button>
+                        </div>
+                      </Form>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Tab.Pane>
+            </Tab.Content>
+          </Col>
+        </Row>
+      </Tab.Container>
+      
+      {/* 评估历史记录部分保持不变... */}
+    </div>
+  );
+};
