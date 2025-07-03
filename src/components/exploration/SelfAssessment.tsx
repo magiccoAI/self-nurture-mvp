@@ -33,6 +33,11 @@ const SelfAssessment: React.FC<{ defaultActiveTab?: string }> = ({ defaultActive
     <div className="self-assessment-section">
       <h2>{selfAssessmentIntro.title}</h2>
       <p className="lead">{selfAssessmentIntro.lead}</p>
+
+      {/* 评估工具现状说明 */}
+      <Alert variant="warning" className="mb-4">
+        <strong>请注意：</strong> 目前这些评估工具尚未完善，仅用于展示内容设计上的功能。它们不包含实际的评估测试，仅作为模板供您参考。
+      </Alert>
       
       {/* 专业提示和免责声明 */}
       <Alert variant={selfAssessmentIntro.professionalTip.variant} className="mb-4">
