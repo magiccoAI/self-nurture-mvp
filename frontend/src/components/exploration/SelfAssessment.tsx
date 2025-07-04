@@ -114,6 +114,10 @@ const SelfAssessment: React.FC<{ defaultActiveTab?: string }> = ({ defaultActive
                     <Alert variant={attachmentAssessment.disclaimer.variant}>
                       <strong>{attachmentAssessment.disclaimer.strong}</strong> {attachmentAssessment.disclaimer.text}
                     </Alert>
+
+                    <Alert variant="warning">
+                      <strong>温馨提示:</strong> 本评估目前仅为框架展示，暂无完整评测内容。
+                    </Alert>
                     
                     <p>{attachmentAssessment.description}</p>
                     
@@ -180,6 +184,10 @@ const SelfAssessment: React.FC<{ defaultActiveTab?: string }> = ({ defaultActive
                     <Alert variant={innerChildAssessment.disclaimer.variant}>
                       <strong>{innerChildAssessment.disclaimer.strong}</strong> {innerChildAssessment.disclaimer.text}
                     </Alert>
+
+                    <Alert variant="warning">
+                      <strong>温馨提示:</strong> 本评估目前仅为框架展示，暂无完整评测内容。
+                    </Alert>
                     
                     {/* 评估内容占位符 */}
                     <div className="assessment-content text-center p-5 bg-light rounded">
@@ -207,6 +215,10 @@ const SelfAssessment: React.FC<{ defaultActiveTab?: string }> = ({ defaultActive
                     
                     <Alert variant={defenseAssessment.disclaimer.variant}>
                       <strong>{defenseAssessment.disclaimer.strong}</strong> {defenseAssessment.disclaimer.text}
+                    </Alert>
+
+                    <Alert variant="warning">
+                      <strong>温馨提示:</strong> 本评估目前仅为框架展示，暂无完整评测内容。
                     </Alert>
                     
                     <p>{defenseAssessment.description}</p>
@@ -287,6 +299,10 @@ const SelfAssessment: React.FC<{ defaultActiveTab?: string }> = ({ defaultActive
                     
                     <Alert variant={personalityAssessment.disclaimer.variant}>
                       <strong>{personalityAssessment.disclaimer.strong}</strong> {personalityAssessment.disclaimer.text}
+                    </Alert>
+
+                    <Alert variant="warning">
+                      <strong>温馨提示:</strong> 本评估目前仅为框架展示，暂无完整评测内容。
                     </Alert>
                     
                     <p>{personalityAssessment.contentDescription}</p>
@@ -369,6 +385,28 @@ const SelfAssessment: React.FC<{ defaultActiveTab?: string }> = ({ defaultActive
                           </Button>
                         </div>
                       </Form>
+                    </div>
+
+                    <div className="mt-4 p-3 bg-light rounded">
+                      <h5>想进行更深入的测试？</h5>
+                      <p>您可以访问专业的“大五人格测试”网站进行更全面的评估。</p>
+                      <Button 
+                        variant="outline-primary" 
+                        onClick={() => window.open('https://www.apesk.com/bigfive/', '_blank')}
+                      >
+                        前往大五人格测试
+                      </Button>
+                    </div>
+
+                    <div className="mt-4 p-3 bg-light rounded">
+                      <h5>想进行MBTI测试？</h5>
+                      <p>您可以访问专业的“MBTI人格测试”网站进行更全面的评估。</p>
+                      <Button 
+                        variant="outline-primary" 
+                        onClick={() => window.open('https://www.16personalities.com/ch/%E4%BA%BA%E6%A0%BC%E6%B5%8B%E8%AF%95', '_blank')}
+                      >
+                        前往MBTI人格测试
+                      </Button>
                     </div>
                   </Card.Body>
                 </Card>

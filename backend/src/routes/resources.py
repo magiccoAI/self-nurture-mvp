@@ -199,6 +199,75 @@ def get_resource_items():
         'data': user_items
     })
 
+# 导出用户资源为PDF
+@resources_bp.route('/export/pdf', methods=['GET'])
+def export_to_pdf():
+    # 在实际应用中，应该根据认证信息获取用户ID
+    user_id = 1
+    
+    # 获取用户的所有资源
+    user_items = [item for item in resource_items if item['user_id'] == user_id]
+    
+    # 创建PDF内容
+    from fpdf import FPDF
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font('Arial', 'B', 16)
+    pdf.cell(40, 10, '我的养育笔记', 0, 1)
+    pdf.set_font('Arial', '', 12)
+    
+    for item in user_items:
+        pdf.cell(40, 10, f'标题: {item["title"]}', 0, 1)
+        pdf.cell(40, 10, f'类型: {item["type"]}', 0, 1)
+        pdf.cell(40, 10, f'作者: {item["author"]}', 0, 1)
+        pdf.cell(40, 10, f'URL: {item["url"]}', 0, 1)
+        pdf.multi_cell(0, 10, f'笔记: {item["notes"]}', 0, 1)
+        pdf.ln(5)
+    
+    # 返回PDF文件
+    from io import BytesIO
+    output = BytesIO()
+    pdf.output(output)
+    output.seek(0)
+    
+    return send_file(
+        output,
+        mimetype='application/pdf',
+        as_attachment=True,
+        download_name='我的养育笔记.pdf'
+    )
+
+# 导出用户资源为Markdown
+@resources_bp.route('/export/markdown', methods=['GET'])
+def export_to_markdown():
+    # 在实际应用中，应该根据认证信息获取用户ID
+    user_id = 1
+    
+    # 获取用户的所有资源
+    user_items = [item for item in resource_items if item['user_id'] == user_id]
+    
+    # 创建Markdown内容
+    markdown_content = "# 我的养育笔记\n\n"
+    
+    for item in user_items:
+        markdown_content += f"## {item['title']}\n"
+        markdown_content += f"- **类型**: {item['type']}\n"
+        markdown_content += f"- **作者**: {item['author']}\n"
+        markdown_content += f"- **URL**: [{item['url']}]({item['url']})\n"
+        markdown_content += f"- **笔记**: {item['notes']}\n\n"
+    
+    # 返回Markdown文件
+    from io import BytesIO
+    output = BytesIO(markdown_content.encode('utf-8'))
+    output.seek(0)
+    
+    return send_file(
+        output,
+        mimetype='text/markdown',
+        as_attachment=True,
+        download_name='我的养育笔记.md'
+    )
+
 # 添加新的资源项目
 @resources_bp.route('/items', methods=['POST'])
 def add_resource_item():
@@ -260,10 +329,15 @@ def get_recent_resources():
     user_id = 1
     
     limit = request.args.get('limit', default=5, type=int)
+    resource_type = request.args.get('type')
     
-    # 获取用户的资源并按添加日期排序
-    user_items = [item for item in resource_items if item['user_id'] == user_id]
-    recent_items = sorted(user_items, key=lambda x: x['add_date'], reverse=True)[:limit]
+    # 获取用户的资源
+    filtered_items = [item for item in resource_items if item['user_id'] == user_id]
+    if resource_type:
+        filtered_items = [item for item in filtered_items if item['type'] == resource_type]
+
+    # 按添加日期排序
+    recent_items = sorted(filtered_items, key=lambda x: x['add_date'], reverse=True)[:limit]
     
     return jsonify({
         'status': 'success',

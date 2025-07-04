@@ -5,12 +5,15 @@
     "@types/reactstrap": "^8.7.1",
     "@types/recharts": "^1.8.29",
     "chart.js": "^4.5.0",
+    "fork-ts-checker-webpack-plugin": "^9.1.0",
+    "gh-pages": "^6.3.0",
     "lucide-react": "^0.523.0",
     "react-chartjs-2": "^5.3.0",
     "reactstrap": "^9.2.3",
     "recharts": "^3.0.2"
   },
   "devDependencies": {
-    "@types/chart.js": "^2.9.41"
+    "@types/chart.js": "^2.9.41",
+    "@types/react-bootstrap": "^1.0.1"
   }
 }

@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://magiccoai.github.io/self-nurture-mvp/",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -17,11 +17,15 @@
     "bootstrap-icons": "^1.11.0",
     "chart.js": "^4.5.0",
     "d3": "^7.9.0",
+    "fork-ts-checker-webpack-plugin": "^9.1.0",
+    "frontend": "file:",
     "gh-pages": "^6.3.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.0",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.2.0",
+    "react-feather": "^2.0.10",
+    "react-icons": "^5.4.0",
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
@@ -33,7 +37,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d docs -b gh-pages -r https://github.com/magiccoAI/self-nurture-mvp.git -a --dotfiles --no-history --nojekyll --add --message \"Deploy to GitHub Pages\" --cname magiccoai.github.io --dest docs"
+    "deploy": "gh-pages -d build --no-history"
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +59,7 @@
   },
   "devDependencies": {
     "@types/d3": "^7.4.3",
+    "@types/react-bootstrap": "^1.0.1",
     "fs-extra": "^11.3.0"
   }
 }

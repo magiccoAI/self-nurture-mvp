@@ -4,8 +4,9 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
 
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS
+from fpdf import FPDF
 
 # 初始化Flask应用
 app = Flask(__name__)

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button, Image, Tab, Tabs } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+// 由于暂时没有使用CSS Module,先注释掉这行代码
 import styles from './Home.module.css';
 
 const Home: React.FC = () => {
@@ -12,7 +13,7 @@ const Home: React.FC = () => {
         <Col md={6}>
           <h1 className="display-4 mb-3" style={{ color: '#FF7F50' }}>欢迎来到自我养育平台</h1>
           <p className="lead">
-            一个帮助你进行自我成长、自我探索和自我管理的综合平台。
+            一个帮助你进行自我成长、自我探索和自我管理的综合平台。<br />
             让我们一起重新靠近那个真实的自己。
           </p>
           <div className="d-flex gap-3 mt-4">
@@ -21,7 +22,7 @@ const Home: React.FC = () => {
           </div>
         </Col>
         <Col md={6} className="text-center">
-          <Image src="/images/yezi.jpg" roundedCircle fluid style={{ maxWidth: '70%' }} />
+          <Image src={`${process.env.PUBLIC_URL}/images/yezi.jpg`} roundedCircle fluid style={{ maxWidth: '70%' }} />
         </Col>
       </Row>
 
