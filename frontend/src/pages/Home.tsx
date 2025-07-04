@@ -11,7 +11,7 @@ const Home: React.FC = () => {
       {/* 主视觉区 */}
       <Row className="mb-5 align-items-center">
         <Col md={6}>
-          <h1 className="display-4 mb-3" style={{ color: '#FF7F50' }}>欢迎来到自我养育平台</h1>
+          <h1 className="display-4 mb-3" style={{ color: '#FF7F50' }}>欢迎来到自我养育主题平台</h1>
           <p className="lead">
             一个帮助你进行自我成长、自我探索和自我管理的综合平台。<br />
             让我们一起重新靠近那个真实的自己。
