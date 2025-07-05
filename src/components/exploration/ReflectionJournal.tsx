@@ -115,7 +115,7 @@ const ReflectionJournal: React.FC = (): JSX.Element => {
 
       <Card className="mb-4">
         <Card.Body>
-          <h4>生命历程事件（参考示例）</h4>
+          <h4>生命历程事件</h4>
           {lifeTimelineEvents.map(event => (
             <div key={event.id} className="mb-3 p-3 border rounded bg-light">
               <h5>{event.age}: {event.title}</h5>

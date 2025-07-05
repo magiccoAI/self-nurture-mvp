@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button, Image, Tab, Tabs } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+// 由于暂时没有使用CSS Module,先注释掉这行代码
 import styles from './Home.module.css';
 
 const Home: React.FC = () => {
@@ -10,24 +11,18 @@ const Home: React.FC = () => {
       {/* 主视觉区 */}
       <Row className="mb-5 align-items-center">
         <Col md={6}>
-          <h1 className="display-4 mb-3" style={{ color: '#FF7F50' }}>
-            欢迎来到自我养育平台
-          </h1>
+          <h1 className="display-4 mb-3" style={{ color: '#FF7F50' }}>欢迎来到自我养育主题平台</h1>
           <p className="lead">
             一个帮助你进行自我成长、自我探索和自我管理的综合平台。<br />
             让我们一起重新靠近那个真实的自己。
           </p>
           <div className="d-flex gap-3 mt-4">
-                              <Button as={Link} to="/knowledge" size="lg" style={{ backgroundColor: '#FFB347', border: 'none' }}>
-              开始探索
-            </Button>
-            <Button as={Link} to="/resources" size="lg" variant="outline-primary">
-              浏览资源
-            </Button>
+            <Button as={Link} to="/knowledge" size="lg" style={{ backgroundColor: '#FFB347', border: 'none' }}>开始探索</Button>
+            <Button as={Link} to="/resources" size="lg" variant="outline-primary">浏览资源</Button>
           </div>
         </Col>
         <Col md={6} className="text-center">
-          <Image src={process.env.PUBLIC_URL + "/images/yezi.jpg"} roundedCircle fluid style={{ maxWidth: '70%' }} />
+          <Image src={`${process.env.PUBLIC_URL}/images/yezi.jpg`} roundedCircle fluid style={{ maxWidth: '70%' }} />
         </Col>
       </Row>
 
@@ -86,18 +81,14 @@ const Home: React.FC = () => {
               {[
                 ['自我探索', '各类测评和练习，了解自我', '/exploration'],
                 ['成长追踪', '目标记录与阶段性反馈', '/tracking'],
-                ['加入社区', '共享成长经验与动力', '#']
+                ['加入社区', '共享成长经验与动力', '/']
               ].map(([title, desc, link], idx) => (
                 <Col md={4} key={idx}>
                   <Card className="h-100 border-0 shadow-sm">
                     <Card.Body>
                       <Card.Title className="fw-bold" style={{ color: '#333' }}>{title}</Card.Title>
                       <Card.Text className="text-muted">{desc}</Card.Text>
-                      {title === '加入社区' ? (
-                        <span className="text-muted">即将推出</span>
-                      ) : (
-                        <Button as={Link} to={link} variant="link">了解更多 →</Button>
-                      )}
+                      <Button as={Link} to={link} variant="link">了解更多 →</Button>
                     </Card.Body>
                   </Card>
                 </Col>
