@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -25,7 +25,7 @@ import SpaceReport from './pages/SpaceReport';
 
 function App() {
   return (
-    <BrowserRouter basename="/self-nurture-mvp">
+    <HashRouter>
       <div className="App d-flex flex-column min-vh-100">
         <Navbar />
         <DisclaimerBanner />
@@ -62,7 +62,7 @@ function App() {
           </Container>
         </footer>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
