@@ -6,7 +6,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 import Card from './components/Card';
 import { Container } from 'react-bootstrap';
-
+import { Link } from 'react-router-dom';
 // Components
 import Navbar from './components/Navbar';
 import DisclaimerBanner from './components/DisclaimerBanner';
@@ -21,6 +21,7 @@ import Resources from './pages/Resources';
 import Practice from './pages/PracticalGuide';
 import AboutUsPage from './pages/AboutUsPage';
 import NotesPage from './pages/NotesPage';
+import SpaceReport from './pages/SpaceReport';
 
 function App() {
   return (
@@ -36,9 +37,10 @@ function App() {
             <Route path="/exploration" element={<Exploration />} />
             <Route path="/tracking" element={<Tracking />} />
             <Route path="/resources" element={<Resources />} />
-            <Route path="/practice" element={<Practice />} />
+            <Route path="/practice-guides" element={<Practice />} />
             <Route path="/about-us" element={<AboutUsPage />} />
             <Route path="/notes" element={<NotesPage />} />
+            <Route path="/space-report" element={<SpaceReport />} />
             <Route path="*" element={<Home />} />
           </Routes>
         </div>
@@ -52,7 +54,7 @@ function App() {
                 <p className="mb-0 small" style={{ color: 'var(--text-dark)' }}>© {new Date().getFullYear()} 自我养育平台. 保留所有权利.</p>
               </div>
               <div className="d-flex gap-3">
-                <a href="/self-nurture-mvp/about-us" className="text-decoration-none" style={{ color: 'var(--text-dark)' }}>关于我们</a>
+                <Link to="/about-us" className="text-decoration-none" style={{ color: 'var(--text-dark)' }}>关于我们</Link>
                 <a href="#" className="text-decoration-none" style={{ color: 'var(--text-dark)' }}>联系我们</a>
                 <a href="#" className="text-decoration-none" style={{ color: 'var(--text-dark)' }}>隐私政策</a>
               </div>

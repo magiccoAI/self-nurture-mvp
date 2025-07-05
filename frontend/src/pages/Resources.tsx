@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Row, Col, Card, Button, Form, InputGroup, Alert, Modal, Badge, ProgressBar, Tab, Tabs, Dropdown, DropdownButton } from 'react-bootstrap';
-import {
-  FaPlus, FaHeart,
-  FaRegLightbulb, FaRegStar, FaMagnifyingGlass, FaStar,
-  FaFileExport, FaTags, FaPenToSquare
-} from 'react-icons/fa6';
-import { 
-  FaBook, FaPodcast, FaYoutube, FaSeedling, FaRegBookmark, FaRegClock,
-  FaClockRotateLeft, FaRegCommentDots, FaBookOpen, FaChartLine
-} from 'react-icons/fa6';
+import { IconType } from 'react-icons';
+import { FaBook, FaPodcast, FaYoutube, FaPlus, FaSearch, FaRegBookmark, FaStar as FaStarIcon, FaRegClock, FaHistory, FaRegEdit, FaRegCommentDots, FaFileExport, FaTags, FaBookOpen, FaChartLine } from 'react-icons/fa';
+import { FaRegLightbulb, FaHeart, FaRegStar, FaSeedling } from "react-icons/fa";
 
-
-// ... 其余代码保持不变 ...
+// asComponent 工具函数，解决 react-icons/fa6 类型兼容问题
+function asComponent(icon: any): React.ComponentType<any> {
+  return (props: any) => React.createElement(icon, props);
+}
 
 // 设置API基础URL
 const API_BASE_URL = 'http://localhost:5000/api';
 
 const Resources: React.FC = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('my-space');
   const [collections, setCollections] = useState<any[]>([]);
   const [recentResources, setRecentResources] = useState<any[]>([]);
@@ -53,10 +51,10 @@ const Resources: React.FC = () => {
 
   // 主题分类
   const themes = [
-    { id: 'self-awareness', name: '自我觉察', icon: FaRegLightbulb },
-    { id: 'inner-child', name: '内在小孩', icon: FaHeart },
-    { id: 'emotional-regulation', name: '情绪调节', icon: FaRegStar },
-    { id: 'boundaries', name: '建立边界', icon: FaSeedling }
+    { id: 'self-awareness', name: '自我觉察', icon: asComponent(FaRegLightbulb) },
+    { id: 'inner-child', name: '内在小孩', icon: asComponent(FaHeart) },
+    { id: 'emotional-regulation', name: '情绪调节', icon: asComponent(FaRegStar) },
+    { id: 'boundaries', name: '建立边界', icon: asComponent(FaSeedling) }
   ];
 
   // 推荐资源数据
@@ -93,6 +91,17 @@ const Resources: React.FC = () => {
       themes: ['self-awareness', 'emotional-regulation'],
       coverColor: 'linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)',
       whyRecommend: '建立心理健康的基础认知框架'
+    },
+    {
+      id: 104,
+      title: '真希望我父母读过这本书',
+      author: '菲利帕·佩里',
+      type: '书籍',
+      description: '你的孩子也会庆幸你读过',
+      difficulty: 'easy',
+      themes: ['parenting', 'relationships', 'trauma'],
+      coverColor: 'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
+      whyRecommend: '从英国到中国，都掀起育儿界的热烈反响。这不仅是一本育儿手册，而是通过一个经验丰富的心理治疗师视角，把"亲子关系"本身当作核心议题来展开：我们与孩子的互动、与自己成长经历的关系、以及与过去未曾解决的创伤之间错综复杂的纠缠。\n核心亮点：\n以"关系"为中心：将育儿看作一种深层的关系连接，而非任务导向。亲子互动越亲密，孩子的成长就越坚实。\n揭示代际传承的隐形"伤害"：你对孩子的某种失控情绪，很可能源自自己童年的创伤。书中教你如何追溯这种情绪，从而打断伤害延续的链条。\n它会让你不舒服，但值得：内容可能让人感到触痛、自尊受挑战，却正是因为"揭开真相"，才能触及改变的起点。\n适合谁读？\n父母，尤其在养育过程中感到焦虑、挫败甚至愤怒的人。\n想要打破自己原生家庭中负面模式的人。\n对亲子关系、代际心理有深入探索意愿的读者。'
     }
   ];
 
@@ -230,11 +239,11 @@ const Resources: React.FC = () => {
     return (
       <div className="d-flex">
         {[...Array(5)].map((_, i) => (
-          <FaStar
+          <FaStarIcon
             key={i}
             className={i < rating ? "text-warning" : "text-muted"}
-            style={{ fontSize: '0.9rem' }} />
-          
+            style={{ fontSize: '0.9rem' }}
+          />
         ))}
       </div>
     );
@@ -423,9 +432,9 @@ const Resources: React.FC = () => {
   };
 
   // 获取主题图标
-  const getThemeIcon = (themeId: string) => {
+  const getThemeIcon = (themeId: string): React.ComponentType<any> => {
     const theme = themes.find(t => t.id === themeId);
-    return theme ? <theme.icon className="text-success" /> : <FaSeedling className="text-success me-3" />;
+    return theme ? theme.icon : asComponent(FaSeedling);
   };
 
   // 获取主题名称
@@ -445,7 +454,7 @@ const Resources: React.FC = () => {
         <div className="d-flex justify-content-between align-items-center mb-3">
           <div>
             <h1 className="d-flex align-items-center mb-0">
-              <FaSeedling className="text-success me-3" /> 
+              {React.createElement(FaSeedling, { className: "text-success me-3" })} 
               我的自我养育空间
             </h1>
             <p className="lead mb-0 mt-2 fst-italic" style={{ color: '#5d4037' }}>
@@ -482,7 +491,7 @@ const Resources: React.FC = () => {
             </div>
             <div>
               <h5 className="d-flex align-items-center">
-                <FaClockRotateLeft className="me-2 text-secondary" />
+                <FaHistory className="me-2 text-secondary" />
                 我的进度
               </h5>
               <p className="mb-0">{collections.length} 个收集，{recentResources.length} 个资源</p>
@@ -490,7 +499,11 @@ const Resources: React.FC = () => {
           </div>
           
           <div className="text-end">
-            <Button variant="link" className="text-success p-0">
+            <Button 
+              variant="link" 
+              className="text-success p-0"
+              onClick={() => navigate('/space-report')}
+            >
               查看完整空间报告 <FaChartLine className="ms-1" />
             </Button>
           </div>
@@ -505,7 +518,7 @@ const Resources: React.FC = () => {
       >
         <Tab eventKey="my-space" title={
           <span className="d-flex align-items-center">
-            <FaSeedling className="me-1" /> 我的空间
+            {React.createElement(FaSeedling, { className: "me-1" })} 我的空间
           </span>
         }>
           {loading ? (
@@ -578,7 +591,7 @@ const Resources: React.FC = () => {
                                 className="me-2"
                                 onClick={() => handleEditClick(resource)}
                               >
-                                <FaPenToSquare />
+                                <FaRegEdit />
                               </Button>
                             </div>
                           </div>
@@ -658,7 +671,7 @@ const Resources: React.FC = () => {
                                 <Card.Body>
                                   <div className="d-flex align-items-start mb-3">
                                     <div className="me-3" style={{ fontSize: '24px' }}>
-                                      <theme.icon />
+                                      {React.createElement(theme.icon)}
                                     </div>
                                     <div>
                                       <h4>{collection.name}</h4>
@@ -752,7 +765,16 @@ const Resources: React.FC = () => {
                               <div className="d-flex flex-wrap mb-2">
                                 {resource.themes.map((themeId: string, i: number) => (
                                   <Badge key={i} bg="light" text="dark" className="me-1 mb-1">
-                                    {getThemeIcon(themeId)} {getThemeName(themeId)}
+                                    {React.createElement(getThemeIcon(themeId) as React.ComponentType<any>, {
+                                      style: {
+                                        color: {
+                                          'self-awareness': '#ffc107',
+                                          'inner-child': '#dc3545',
+                                          'emotional-regulation': '#17a2b8',
+                                          'boundaries': '#28a745'
+                                        }[themeId]
+                                      }
+                                    })} {getThemeName(themeId)}
                                   </Badge>
                                 ))}
                               </div>
@@ -851,12 +873,12 @@ const Resources: React.FC = () => {
         
         <Tab eventKey="discover" title={
           <span className="d-flex align-items-center">
-            <FaMagnifyingGlass className="me-1" /> 探索资源
+            <FaSearch className="me-1" /> 探索资源
           </span>
         }>
           <div className="text-center py-5">
             <h3 className="d-flex align-items-center justify-content-center">
-              <FaMagnifyingGlass className="me-2 text-muted" />
+              <FaSearch className="me-2 text-muted" />
               探索自我养育资源
             </h3>
             <p className="text-muted">探索更多自我养育资源（功能开发中）</p>
@@ -868,9 +890,9 @@ const Resources: React.FC = () => {
       <Modal show={showAddResourceModal} onHide={() => setShowAddResourceModal(false)} centered size="lg">
         <Modal.Header closeButton>
           <Modal.Title className="d-flex align-items-center">
-            <FaPlus className="text-success me-2" />
-            添加新资源
-          </Modal.Title>
+              {React.createElement(FaPlus, { className: "text-success me-2" })}
+              添加新资源
+            </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleAddResource}>
@@ -995,7 +1017,7 @@ const Resources: React.FC = () => {
             
             <Form.Group className="mb-3">
               <Form.Label className="d-flex align-items-center">
-                <FaRegCommentDots className="me-2 text-success" />
+                {React.createElement(FaRegCommentDots, { className: "me-2 text-success" })}
                 我的初步感想
               </Form.Label>
               <Form.Control 

@@ -1,59 +1,7 @@
-import React, { useState } from 'react';
-// 导入react-bootstrap组件，需要先安装@types/react-bootstrap类型声明
+import React from 'react';
 import { Card, Row, Col, Form, Button } from 'react-bootstrap';
 
-interface DialogueRecord {
-  id: number;
-  topic: string;
-  myVoice: string;
-  innerVoice: string;
-  insight: string;
-}
-
 const InnerDialogue: React.FC = () => {
-  const [dialogueRecords, setDialogueRecords] = useState<DialogueRecord[]>([]);
-  const [currentDialogue, setCurrentDialogue] = useState<DialogueRecord>({
-    id: 0,
-    topic: '',
-    myVoice: '',
-    innerVoice: '',
-    insight: '',
-  });
-  const [editId, setEditId] = useState<number | null>(null);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setCurrentDialogue({ ...currentDialogue, [name]: value });
-  };
-
-  const handleSaveDialogue = () => {
-    if (editId !== null) {
-      // Edit existing record
-      setDialogueRecords(dialogueRecords.map(record =>
-        record.id === editId ? { ...currentDialogue, id: editId } : record
-      ));
-      setEditId(null);
-    } else {
-      // Add new record
-      setDialogueRecords([
-        ...dialogueRecords,
-        { ...currentDialogue, id: dialogueRecords.length > 0 ? Math.max(...dialogueRecords.map(d => d.id)) + 1 : 1 },
-      ]);
-    }
-    setCurrentDialogue({ id: 0, topic: '', myVoice: '', innerVoice: '', insight: '' }); // Clear form
-  };
-
-  const handleEdit = (id: number) => {
-    const recordToEdit = dialogueRecords.find(record => record.id === id);
-    if (recordToEdit) {
-      setCurrentDialogue(recordToEdit);
-      setEditId(id);
-    }
-  };
-
-  const handleDelete = (id: number) => {
-    setDialogueRecords(dialogueRecords.filter(record => record.id !== id));
-  };
   return (
     <div className="inner-dialogue-section">
       <h2>内在对话练习</h2>
@@ -106,86 +54,35 @@ const InnerDialogue: React.FC = () => {
               <Form>
                 <Form.Group className="mb-3">
                   <Form.Label>对话主题</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="例如: 与内在小孩对话、探索内在批判者"
-                    name="topic"
-                    value={currentDialogue.topic}
-                    onChange={handleInputChange}
-                  />
+                  <Form.Control type="text" placeholder="例如: 与内在小孩对话、探索内在批判者" />
                 </Form.Group>
                 
                 <Row>
                   <Col md={6}>
                     <Form.Group className="mb-3">
                       <Form.Label>我的声音</Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        rows={4}
-                        placeholder="作为成年自我，你想说什么..."
-                        name="myVoice"
-                        value={currentDialogue.myVoice}
-                        onChange={handleInputChange}
-                      />
+                      <Form.Control as="textarea" rows={4} placeholder="作为成年自我，你想说什么..." />
                     </Form.Group>
                   </Col>
                   <Col md={6}>
                     <Form.Group className="mb-3">
                       <Form.Label>内在部分的声音</Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        rows={4}
-                        placeholder="内在部分可能会如何回应..."
-                        name="innerVoice"
-                        value={currentDialogue.innerVoice}
-                        onChange={handleInputChange}
-                      />
+                      <Form.Control as="textarea" rows={4} placeholder="内在部分可能会如何回应..." />
                     </Form.Group>
                   </Col>
                 </Row>
                 
                 <Form.Group className="mb-3">
                   <Form.Label>洞察和反思</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={3}
-                    placeholder="从这次对话中，你学到了什么？有什么新的理解？"
-                    name="insight"
-                    value={currentDialogue.insight}
-                    onChange={handleInputChange}
-                  />
+                  <Form.Control as="textarea" rows={3} placeholder="从这次对话中，你学到了什么？有什么新的理解？" />
                 </Form.Group>
                 
-                <Button variant="primary" onClick={handleSaveDialogue}>
-                  {editId !== null ? '更新对话' : '保存对话'}
+                <Button variant="primary">
+                  保存对话
                 </Button>
               </Form>
             </Card.Body>
           </Card>
-
-          {dialogueRecords.length > 0 && (
-            <Card className="mt-4">
-              <Card.Body>
-                <h4>已保存的对话记录</h4>
-                {dialogueRecords.map((record) => (
-                  <Card key={record.id} className="mb-3">
-                    <Card.Body>
-                      <h5>主题: {record.topic}</h5>
-                      <p><strong>我的声音:</strong> {record.myVoice}</p>
-                      <p><strong>内在部分的声音:</strong> {record.innerVoice}</p>
-                      <p><strong>洞察和反思:</strong> {record.insight}</p>
-                      <Button variant="info" size="sm" className="me-2" onClick={() => handleEdit(record.id)}>
-                        编辑
-                      </Button>
-                      <Button variant="danger" size="sm" onClick={() => handleDelete(record.id)}>
-                        删除
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                ))}
-              </Card.Body>
-            </Card>
-          )}
         </Col>
         
         <Col md={4}>

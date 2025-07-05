@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button, ProgressBar } from 'react-bootstrap';
+// 需要先安装 react-icons 依赖
+// npm install react-icons --save
+// 或
+// yarn add react-icons
 import { FaFileExport, FaRegLightbulb, FaRegStar } from 'react-icons/fa';
 
 const SpaceReport: React.FC = () => {
@@ -300,6 +304,7 @@ const SpaceReport: React.FC = () => {
       </div>
     </div>
   );
+
 };
 
 export default SpaceReport;

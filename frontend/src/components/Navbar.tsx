@@ -61,8 +61,8 @@ const Navbar: React.FC = () => {
             </Nav.Link>
             <Nav.Link
                 as={Link} 
-                to="/practice" 
-                className={`mx-1 ${isActive('/practice') ? 'active fw-bold' : ''}`}
+                to="/practice-guides" 
+                className={`mx-1 ${isActive('/practice-guides') ? 'active fw-bold' : ''}`}
               >
                 实践指南
               </Nav.Link>
