@@ -6,6 +6,18 @@ import { Button, ProgressBar } from 'react-bootstrap';
 // yarn add react-icons
 import { FaFileExport, FaRegLightbulb, FaRegStar } from 'react-icons/fa';
 
+// 删除重复声明的FaRegStarIcon组件
+
+
+// asComponent 工具函数，解决 react-icons/fa6 类型兼容问题
+function asComponent(icon: any): React.ComponentType<any> {
+  return (props: any) => React.createElement(icon, props);
+}
+
+const FaFileExportIcon = asComponent(FaFileExport);
+const FaRegLightbulbIcon = asComponent(FaRegLightbulb);
+const FaRegStarIcon = asComponent(FaRegStar);
+
 const SpaceReport: React.FC = () => {
   const [reportData, setReportData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -100,7 +112,7 @@ const SpaceReport: React.FC = () => {
               <p className="lead mb-0">2023年11月总结 · {new Date().toLocaleDateString()}更新</p>
             </div>
             <Button variant="success" onClick={exportToPDF}>
-              <FaFileExport className="me-2" /> 导出PDF报告
+              <FaFileExportIcon className="me-2" /> 导出PDF报告
             </Button>
           </div>
         </div>
@@ -247,7 +259,7 @@ const SpaceReport: React.FC = () => {
         <div className="card border-0 shadow-sm mb-5">
           <div className="card-header bg-white">
             <h5 className="mb-0 d-flex align-items-center">
-              <FaRegLightbulb className="text-warning me-2" />
+              <FaRegLightbulbIcon className="text-warning me-2" />
               个性化洞察
             </h5>
           </div>
@@ -257,7 +269,7 @@ const SpaceReport: React.FC = () => {
                 <li key={index} className="list-group-item">
                   <div className="d-flex">
                     <div className="flex-shrink-0 me-3">
-                      <FaRegStar className="text-success mt-1" />
+                      <FaRegStarIcon className="text-success mt-1" />
                     </div>
                     <div className="flex-grow-1">
                       {insight}
@@ -272,7 +284,7 @@ const SpaceReport: React.FC = () => {
         <div className="card border-0 shadow-sm">
           <div className="card-header bg-white">
             <h5 className="mb-0 d-flex align-items-center">
-              <FaRegStar className="text-warning me-2" />
+              <FaRegStarIcon className="text-warning me-2" />
               为您推荐
             </h5>
           </div>

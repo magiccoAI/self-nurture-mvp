@@ -762,7 +762,6 @@ const TheoryBase: React.FC = () => {
 };
 
 const ResourceLibrary: React.FC = () => {
-  const [selectedTopic, setSelectedTopic] = React.useState('全部');
   const [selectedType, setSelectedType] = React.useState('全部');
   return (
     <div className="resource-library-section">

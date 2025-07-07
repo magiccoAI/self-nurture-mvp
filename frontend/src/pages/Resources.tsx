@@ -2,9 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Row, Col, Card, Button, Form, InputGroup, Alert, Modal, Badge, ProgressBar, Tab, Tabs, Dropdown, DropdownButton } from 'react-bootstrap';
-import { IconType } from 'react-icons';
-import { FaBook, FaPodcast, FaYoutube, FaPlus, FaSearch, FaRegBookmark, FaStar as FaStarIcon, FaRegClock, FaHistory, FaRegEdit, FaRegCommentDots, FaFileExport, FaTags, FaBookOpen, FaChartLine } from 'react-icons/fa';
-import { FaRegLightbulb, FaHeart, FaRegStar, FaSeedling } from "react-icons/fa";
+import { FaPlus, FaSearch, FaRegBookmark, FaRegClock, FaHistory, FaRegEdit, FaRegCommentDots, FaFileExport, FaTags, FaBookOpen, FaChartLine, FaBook, FaPodcast, FaYoutube, FaStar, FaRegStar, FaRegLightbulb, FaHeart, FaSeedling } from 'react-icons/fa';
+
+const FaBookIcon = asComponent(FaBook);
+const FaPodcastIcon = asComponent(FaPodcast);
+const FaYoutubeIcon = asComponent(FaYoutube);
+const FaStarIcon = asComponent(FaStar);
+const FaRegStarIcon = asComponent(FaRegStar);
+const FaRegEditIcon = asComponent(FaRegEdit);
+const FaRegCommentDotsIcon = asComponent(FaRegCommentDots);
+const FaSeedlingIcon = asComponent(FaSeedling);
+const FaRegLightbulbIcon = asComponent(FaRegLightbulb);
+const FaBookOpenIcon = asComponent(FaBookOpen);
+const FaRegBookmarkIcon = asComponent(FaRegBookmark);
+const FaPlusIcon = asComponent(FaPlus);
+const FaTagsIcon = asComponent(FaTags);
+const FaFileExportIcon = asComponent(FaFileExport);
+const FaSearchIcon = asComponent(FaSearch);
 
 // asComponent 工具函数，解决 react-icons/fa6 类型兼容问题
 function asComponent(icon: any): React.ComponentType<any> {
@@ -454,7 +468,7 @@ const Resources: React.FC = () => {
         <div className="d-flex justify-content-between align-items-center mb-3">
           <div>
             <h1 className="d-flex align-items-center mb-0">
-              {React.createElement(FaSeedling, { className: "text-success me-3" })} 
+              {React.createElement(asComponent(FaSeedling), { className: "text-success me-3" })} 
               我的自我养育空间
             </h1>
             <p className="lead mb-0 mt-2 fst-italic" style={{ color: '#5d4037' }}>
@@ -468,14 +482,14 @@ const Resources: React.FC = () => {
               className="me-2 d-flex align-items-center"
               onClick={() => setShowAddResourceModal(true)}
             >
-              <FaPlus className="me-1" /> 添加资源
+              {React.createElement(asComponent(FaPlus), { className: "me-1" })} 添加资源
             </Button>
             <Button 
               variant="outline-success" 
               className="d-flex align-items-center"
               onClick={() => setShowCollectionModal(true)}
             >
-              <FaRegBookmark className="me-1" /> 创建收集
+              {React.createElement(asComponent(FaRegBookmark), { className: "me-1" })} 创建收集
             </Button>
           </div>
         </div>
@@ -484,14 +498,14 @@ const Resources: React.FC = () => {
           <div className="d-flex">
             <div className="me-4">
               <h5 className="d-flex align-items-center">
-                <FaRegClock className="me-2 text-secondary" />
+                {React.createElement(asComponent(FaRegClock), { className: "me-2 text-secondary" })}
                 最近访问
               </h5>
               <p className="mb-0">{recentResources[0]?.title || '暂无最近访问'}</p>
             </div>
             <div>
               <h5 className="d-flex align-items-center">
-                <FaHistory className="me-2 text-secondary" />
+                {React.createElement(asComponent(FaHistory), { className: "me-2 text-secondary" })}
                 我的进度
               </h5>
               <p className="mb-0">{collections.length} 个收集，{recentResources.length} 个资源</p>
@@ -504,7 +518,7 @@ const Resources: React.FC = () => {
               className="text-success p-0"
               onClick={() => navigate('/space-report')}
             >
-              查看完整空间报告 <FaChartLine className="ms-1" />
+              查看完整空间报告 {React.createElement(asComponent(FaChartLine), { className: "ms-1" })}
             </Button>
           </div>
         </div>
@@ -518,7 +532,7 @@ const Resources: React.FC = () => {
       >
         <Tab eventKey="my-space" title={
           <span className="d-flex align-items-center">
-            {React.createElement(FaSeedling, { className: "me-1" })} 我的空间
+            {React.createElement(asComponent(FaSeedling), { className: "me-1" })} 我的空间
           </span>
         }>
           {loading ? (
@@ -539,7 +553,7 @@ const Resources: React.FC = () => {
                   <Card.Body>
                     <div className="d-flex justify-content-between align-items-center mb-4">
                       <h3 className="d-flex align-items-center mb-0">
-                        <FaRegClock className="text-success me-2" />
+                        {React.createElement(asComponent(FaRegClock), { className: "text-success me-2" })}
                         我的养育历程
                       </h3>
                       <Button variant="outline-success" size="sm">
@@ -563,7 +577,7 @@ const Resources: React.FC = () => {
                               <div className="d-flex align-items-center mb-2">
                                 <h5 className="mb-0 me-2">{resource.title}</h5>
                                 <Badge bg="light" text="dark" className="d-flex align-items-center">
-                                  {resource.type === '书籍' && <FaBook className="me-1" />}
+                                  {resource.type === '书籍' && <FaBookIcon className="me-1" />}
                                   {resource.type}
                                 </Badge>
                               </div>
@@ -591,7 +605,7 @@ const Resources: React.FC = () => {
                                 className="me-2"
                                 onClick={() => handleEditClick(resource)}
                               >
-                                <FaRegEdit />
+                                <FaRegEditIcon />
                               </Button>
                             </div>
                           </div>
@@ -599,7 +613,7 @@ const Resources: React.FC = () => {
                           {resource.personalNotes && (
                             <div className="mt-3 p-3 rounded bg-light">
                               <div className="d-flex align-items-center mb-2">
-                                <FaRegCommentDots className="text-success me-2" />
+                                <FaRegCommentDotsIcon className="text-success me-2" />
                                 <strong>我的感悟</strong>
                               </div>
                               <p className="mb-0">{resource.personalNotes}</p>
@@ -621,7 +635,7 @@ const Resources: React.FC = () => {
                       ))
                     ) : (
                       <div className="text-center py-5 bg-light rounded">
-                        <FaBookOpen className="text-muted mb-3" size={48} />
+                        <FaBookOpenIcon className="text-muted mb-3" size={48} />
                         <h5>你还没有开始记录养育历程</h5>
                         <p className="text-muted">添加资源并记录你的感悟，开始自我养育之旅</p>
                         <Button 
@@ -640,7 +654,7 @@ const Resources: React.FC = () => {
                   <Card.Body>
                     <div className="d-flex justify-content-between align-items-center mb-4">
                       <h3 className="d-flex align-items-center mb-0">
-                        <FaRegBookmark className="text-success me-2" />
+                        <FaRegBookmarkIcon className="text-success me-2" />
                         我的养育主题
                       </h3>
                       <Button variant="outline-success" size="sm">
@@ -654,7 +668,7 @@ const Resources: React.FC = () => {
                     
                     {collections.length === 0 ? (
                       <div className="text-center py-5 bg-light rounded">
-                        <FaSeedling className="text-muted mb-3" size={48} />
+                        <FaSeedlingIcon className="text-muted mb-3" size={48} />
                         <h5>您还没有创建任何养育主题</h5>
                         <p className="text-muted">开始创建您的第一个自我养育主题收集吧</p>
                         <Button variant="success" onClick={() => setShowCollectionModal(true)}>
@@ -736,7 +750,7 @@ const Resources: React.FC = () => {
                   <Card.Body>
                     <div className="d-flex justify-content-between align-items-center mb-4">
                       <h3 className="d-flex align-items-center mb-0">
-                        <FaRegStar className="text-warning me-2" />
+                        <FaRegStarIcon className="text-warning me-2" />
                         精选推荐
                       </h3>
                       <Badge bg="warning">今日更新</Badge>
@@ -755,9 +769,9 @@ const Resources: React.FC = () => {
                              }}>
                           <div className="d-flex align-items-start mb-3">
                             <div className="flex-shrink-0 me-3">
-                              {resource.type === '书籍' && <FaBook size={24} className="text-primary" />}
-                              {resource.type === '播客' && <FaPodcast size={24} className="text-info" />}
-                              {resource.type === '视频' && <FaYoutube size={24} className="text-danger" />}
+                              {resource.type === '书籍' && <FaBookIcon size={24} className="text-primary" />}
+                              {resource.type === '播客' && <FaPodcastIcon size={24} className="text-info" />}
+                              {resource.type === '视频' && <FaYoutubeIcon size={24} className="text-danger" />}
                             </div>
                             <div>
                               <h5 className="mb-1">{resource.title}</h5>
@@ -785,7 +799,7 @@ const Resources: React.FC = () => {
                           
                           <div className="bg-light p-2 rounded mb-3">
                             <div className="d-flex align-items-start">
-                              <FaRegLightbulb className="text-warning mt-1 me-2" />
+                              <FaRegLightbulbIcon className="text-warning mt-1 me-2" />
                               <small>
                                 <strong>推荐理由：</strong> {resource.whyRecommend}
                               </small>
@@ -809,11 +823,11 @@ const Resources: React.FC = () => {
                                 setShowAddResourceModal(true);
                               }}
                             >
-                              <FaPlus className="me-1" /> 加入我的收集
+                              <FaPlusIcon className="me-1" /> 加入我的收集
                             </Button>
                             
                             <Button variant="outline-secondary" size="sm">
-                              <FaRegCommentDots className="me-1" /> 添加感想
+                              <FaRegCommentDotsIcon className="me-1" /> 添加感想
                             </Button>
                           </div>
                         </div>
@@ -826,7 +840,7 @@ const Resources: React.FC = () => {
                 <Card className="border-0 shadow-sm">
                   <Card.Body>
                     <h3 className="d-flex align-items-center mb-4">
-                      <FaTags className="text-success me-2" />
+                      <FaTagsIcon className="text-success me-2" />
                       探索主题
                     </h3>
                     
@@ -854,7 +868,7 @@ const Resources: React.FC = () => {
                         id="dropdown-export-button"
                         title={
                           <>
-                            <FaFileExport className="me-2" /> 导出我的养育笔记
+                            <FaFileExportIcon className="me-2" /> 导出我的养育笔记
                           </>
                         }
                         variant="success"
@@ -873,12 +887,12 @@ const Resources: React.FC = () => {
         
         <Tab eventKey="discover" title={
           <span className="d-flex align-items-center">
-            <FaSearch className="me-1" /> 探索资源
+            <FaSearchIcon className="me-1" /> 探索资源
           </span>
         }>
           <div className="text-center py-5">
             <h3 className="d-flex align-items-center justify-content-center">
-              <FaSearch className="me-2 text-muted" />
+              <FaSearchIcon className="me-2 text-muted" />
               探索自我养育资源
             </h3>
             <p className="text-muted">探索更多自我养育资源（功能开发中）</p>
@@ -890,7 +904,7 @@ const Resources: React.FC = () => {
       <Modal show={showAddResourceModal} onHide={() => setShowAddResourceModal(false)} centered size="lg">
         <Modal.Header closeButton>
           <Modal.Title className="d-flex align-items-center">
-              {React.createElement(FaPlus, { className: "text-success me-2" })}
+              {React.createElement(FaPlusIcon, { className: "text-success me-2" })}
               添加新资源
             </Modal.Title>
         </Modal.Header>
@@ -1017,7 +1031,7 @@ const Resources: React.FC = () => {
             
             <Form.Group className="mb-3">
               <Form.Label className="d-flex align-items-center">
-                {React.createElement(FaRegCommentDots, { className: "me-2 text-success" })}
+                {React.createElement(FaRegCommentDotsIcon, { className: "me-2 text-success" })}
                 我的初步感想
               </Form.Label>
               <Form.Control 
@@ -1059,7 +1073,7 @@ const Resources: React.FC = () => {
       <Modal show={showCollectionModal} onHide={() => setShowCollectionModal(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title className="d-flex align-items-center">
-            <FaRegBookmark className="text-success me-2" />
+            <FaRegBookmarkIcon className="text-success me-2" />
             创建新收集
           </Modal.Title>
         </Modal.Header>
@@ -1222,7 +1236,7 @@ const Resources: React.FC = () => {
               
               <Form.Group className="mb-3">
                 <Form.Label className="d-flex align-items-center">
-                  <FaRegCommentDots className="me-2 text-success" />
+                  <FaRegCommentDotsIcon className="me-2 text-success" />
                   我的感想
                 </Form.Label>
                 <Form.Control
