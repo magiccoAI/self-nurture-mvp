@@ -1,18 +1,20 @@
 {
   "files": {
-    "main.css": "/self-nurture-mvp/static/css/main.a9735bad.css",
-    "main.js": "/self-nurture-mvp/static/js/main.81c1c855.js",
-    "static/js/453.670e15c7.chunk.js": "/self-nurture-mvp/static/js/453.670e15c7.chunk.js",
+    "main.css": "/self-nurture-mvp/static/css/main.8b42884a.css",
+    "main.js": "/self-nurture-mvp/static/js/main.5c3b1ea5.js",
+    "static/js/229.22f90a56.chunk.js": "/self-nurture-mvp/static/js/229.22f90a56.chunk.js",
+    "static/js/453.54292a4b.chunk.js": "/self-nurture-mvp/static/js/453.54292a4b.chunk.js",
     "static/media/bootstrap-icons.woff?": "/self-nurture-mvp/static/media/bootstrap-icons.1295669cd4e305c97f2c.woff",
     "static/media/bootstrap-icons.woff2?": "/self-nurture-mvp/static/media/bootstrap-icons.92ea18a81d737146ff04.woff2",
     "index.html": "/self-nurture-mvp/index.html",
     "static/media/leaf-background.svg": "/self-nurture-mvp/static/media/leaf-background.82333173cace760c8f48.svg",
-    "main.a9735bad.css.map": "/self-nurture-mvp/static/css/main.a9735bad.css.map",
-    "main.81c1c855.js.map": "/self-nurture-mvp/static/js/main.81c1c855.js.map",
-    "453.670e15c7.chunk.js.map": "/self-nurture-mvp/static/js/453.670e15c7.chunk.js.map"
+    "main.8b42884a.css.map": "/self-nurture-mvp/static/css/main.8b42884a.css.map",
+    "main.5c3b1ea5.js.map": "/self-nurture-mvp/static/js/main.5c3b1ea5.js.map",
+    "229.22f90a56.chunk.js.map": "/self-nurture-mvp/static/js/229.22f90a56.chunk.js.map",
+    "453.54292a4b.chunk.js.map": "/self-nurture-mvp/static/js/453.54292a4b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a9735bad.css",
-    "static/js/main.81c1c855.js"
+    "static/css/main.8b42884a.css",
+    "static/js/main.5c3b1ea5.js"
   ]
 }
