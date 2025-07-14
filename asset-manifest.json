@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/self-nurture-mvp/static/css/main.85da7262.css",
-    "main.js": "/self-nurture-mvp/static/js/main.c2218a57.js",
+    "main.css": "/self-nurture-mvp/static/css/main.6ace7cad.css",
+    "main.js": "/self-nurture-mvp/static/js/main.1055c891.js",
     "static/js/229.22f90a56.chunk.js": "/self-nurture-mvp/static/js/229.22f90a56.chunk.js",
     "static/js/453.54292a4b.chunk.js": "/self-nurture-mvp/static/js/453.54292a4b.chunk.js",
     "static/media/selfcaremediatationguide.png": "/self-nurture-mvp/static/media/selfcaremediatationguide.c2149fbed7861af236f0.png",
@@ -9,13 +9,13 @@
     "static/media/bootstrap-icons.woff2?": "/self-nurture-mvp/static/media/bootstrap-icons.92ea18a81d737146ff04.woff2",
     "index.html": "/self-nurture-mvp/index.html",
     "static/media/leaf-background.svg": "/self-nurture-mvp/static/media/leaf-background.82333173cace760c8f48.svg",
-    "main.85da7262.css.map": "/self-nurture-mvp/static/css/main.85da7262.css.map",
-    "main.c2218a57.js.map": "/self-nurture-mvp/static/js/main.c2218a57.js.map",
+    "main.6ace7cad.css.map": "/self-nurture-mvp/static/css/main.6ace7cad.css.map",
+    "main.1055c891.js.map": "/self-nurture-mvp/static/js/main.1055c891.js.map",
     "229.22f90a56.chunk.js.map": "/self-nurture-mvp/static/js/229.22f90a56.chunk.js.map",
     "453.54292a4b.chunk.js.map": "/self-nurture-mvp/static/js/453.54292a4b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.85da7262.css",
-    "static/js/main.c2218a57.js"
+    "static/css/main.6ace7cad.css",
+    "static/js/main.1055c891.js"
   ]
 }
